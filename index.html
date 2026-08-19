@@ -177,7 +177,6 @@
         .key-item .key-info .status.expired { background: rgba(255,0,0,.1); color: #ff6b8a; }
         .key-item .key-info .status.disabled { background: rgba(255,0,0,.2); color: #ff4444; }
         .key-item .key-info .status.synced { background: rgba(74,222,128,.2); color: #4ade80; }
-        .key-item .key-info .status.syncing { background: rgba(251,191,36,.2); color: #fbbf24; }
         .key-item .key-info .vip-badge { background: rgba(192,132,252,.2); color: #c084fc; padding: 1px 8px; border-radius: 10px; font-weight: 700; }
         .key-item .key-info .admin-badge { background: linear-gradient(135deg, #7c3aed, #4c1d95); color: #fff; padding: 1px 10px; border-radius: 10px; font-weight: 700; }
         .key-item .del-btn { color: #ff6b8a; cursor: pointer; border: 0; background: none; font-size: 16px; padding: 0 4px; }
@@ -299,28 +298,6 @@
         .modal-box .btn-logout { display: block; width: 100%; padding: 12px; border: 2px solid rgba(255,107,138,.3); border-radius: 14px; background: rgba(255,0,0,.05); color: #ff6b8a; font-weight: 700; font-size: 16px; cursor: pointer; transition: .3s; text-align: center; }
         .modal-box .btn-logout:hover { background: rgba(255,0,0,.1); border-color: #ff6b8a; }
 
-        .firebase-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: rgba(139,92,246,.08);
-            border-radius: 8px;
-            margin: 8px 0;
-            font-size: 11px;
-            color: #8a7a9e;
-        }
-        .firebase-status .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .firebase-status .dot.online { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,.3); }
-        .firebase-status .dot.offline { background: #ff6b8a; box-shadow: 0 0 8px rgba(255,107,138,.3); }
-        .firebase-status .dot.checking { background: #fbbf24; box-shadow: 0 0 8px rgba(251,191,36,.3); animation: pulse 1s infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-
         @media (max-width: 430px) {
             .account-card { flex-wrap: wrap; padding: 14px 16px; gap: 10px; }
             .avatar { width: 50px; height: 50px; font-size: 22px; }
@@ -386,7 +363,7 @@
                 </div>
                 <div class="slot-btn">
                     <span>Slot</span>
-                    <strong id="slotText">1/3</strong>
+                    <strong id="slotText">∞</strong>
                 </div>
             </div>
 
@@ -418,13 +395,8 @@
                     <span class="sub">| Zalo: 0962086812</span>
                 </h3>
                 <p style="color:#8a7a9e; font-size:12px; margin-bottom:12px;">
-                    🔐 Tự tạo key - Đồng bộ lên Firebase
+                    🔐 Tự tạo key - Không giới hạn thiết bị
                 </p>
-                
-                <div class="firebase-status" id="firebaseStatus">
-                    <span class="dot checking" id="firebaseDot"></span>
-                    <span id="firebaseStatusText">Đang kiểm tra kết nối...</span>
-                </div>
                 
                 <div class="admin-row">
                     <input id="newKeyInput" type="text" placeholder="Nhập key hoặc để trống">
@@ -553,7 +525,7 @@
 
     <script>
         // ============================================================
-        //  FIREBASE CONFIG - CỦA BẠN
+        //  FIREBASE CONFIG
         // ============================================================
         const firebaseConfig = {
             apiKey: "AIzaSyBYrCMOEwxyiAJkCdeH4pToU6F8qPnpy_Y",
@@ -567,106 +539,26 @@
         };
 
         // ============================================================
-        //  KHỞI TẠO FIREBASE - CÓ KIỂM TRA LỖI
+        //  KHỞI TẠO FIREBASE (CHẠY NGẦM)
         // ============================================================
         let firebaseApp, firebaseDatabase, firebaseAuth;
         let isFirebaseConnected = false;
-        let firebaseError = null;
 
-        function initFirebase() {
-            try {
-                firebaseApp = firebase.initializeApp(firebaseConfig);
-                firebaseDatabase = firebase.database();
-                firebaseAuth = firebase.auth();
-                
-                const connectedRef = firebaseDatabase.ref('.info/connected');
-                connectedRef.on('value', (snap) => {
-                    const connected = snap.val() === true;
-                    isFirebaseConnected = connected;
-                    updateFirebaseStatus(connected);
-                    updateSyncButton();
-                    
-                    if (connected) {
-                        showToast('✅ Firebase đã kết nối!', 'success');
-                        setTimeout(autoSync, 500);
-                    } else {
-                        showToast('⚠️ Đang mất kết nối Firebase...', 'error');
-                    }
-                });
-                
-                // Timeout kiểm tra
-                setTimeout(() => {
-                    if (!isFirebaseConnected) {
-                        firebaseError = 'Không thể kết nối Firebase sau 5s';
-                        updateFirebaseStatus(false);
-                        updateSyncButton();
-                        showToast('❌ Lỗi: Không kết nối được Firebase!', 'error');
-                    }
-                }, 5000);
-                
-            } catch (error) {
-                firebaseError = error.message;
-                isFirebaseConnected = false;
-                updateFirebaseStatus(false);
-                updateSyncButton();
-                showToast('❌ Lỗi Firebase: ' + error.message, 'error');
-            }
-        }
-
-        function updateFirebaseStatus(connected) {
-            const dot = document.getElementById('firebaseDot');
-            const text = document.getElementById('firebaseStatusText');
-            if (dot) {
-                dot.className = 'dot ' + (connected ? 'online' : 'offline');
-            }
-            if (text) {
-                text.textContent = connected ? '✅ Firebase đã kết nối' : '❌ Firebase chưa kết nối';
-            }
-        }
-
-        function updateSyncButton() {
-            const syncBtn = document.getElementById('syncKeyBtn');
-            if (syncBtn) {
-                syncBtn.disabled = !isFirebaseConnected;
-                syncBtn.textContent = isFirebaseConnected ? '🔄 Đồng bộ' : '⛔ Mất kết nối';
-                syncBtn.style.opacity = isFirebaseConnected ? '1' : '0.5';
-            }
-        }
-
-        // ============================================================
-        //  TỰ ĐỘNG ĐỒNG BỘ
-        // ============================================================
-        function autoSync() {
-            if (!isFirebaseConnected || !firebaseDatabase) {
-                setTimeout(autoSync, 3000);
-                return;
-            }
-
-            firebaseDatabase.ref('keys').once('value').then((snapshot) => {
-                const data = snapshot.val();
-                const firebaseKeys = data ? Object.values(data) : [];
-                const localKeys = JSON.parse(localStorage.getItem('aimlock_keys') || '[]');
-                
-                const allKeys = [...firebaseKeys, ...localKeys];
-                const uniqueKeys = [];
-                const seen = new Set();
-                allKeys.forEach(k => {
-                    if (k && k.encryptedKey && !seen.has(k.encryptedKey)) {
-                        seen.add(k.encryptedKey);
-                        uniqueKeys.push(k);
-                    }
-                });
-                
-                const currentKeys = JSON.parse(localStorage.getItem('aimlock_keys') || '[]');
-                if (uniqueKeys.length > 0 && JSON.stringify(uniqueKeys) !== JSON.stringify(currentKeys)) {
-                    localStorage.setItem('aimlock_keys', JSON.stringify(uniqueKeys));
-                    showToast('🔄 Đã đồng bộ dữ liệu từ Firebase', 'success');
-                    location.reload();
-                }
-            }).catch((error) => {
-                console.log('Auto sync error:', error);
-                setTimeout(autoSync, 3000);
+        try {
+            firebaseApp = firebase.initializeApp(firebaseConfig);
+            firebaseDatabase = firebase.database();
+            firebaseAuth = firebase.auth();
+            
+            const connectedRef = firebaseDatabase.ref('.info/connected');
+            connectedRef.on('value', (snap) => {
+                isFirebaseConnected = snap.val() === true;
             });
+            
+            isFirebaseConnected = true;
+            
+        } catch (error) {
+            isFirebaseConnected = false;
+            console.error('Firebase init error:', error);
         }
 
         // ============================================================
@@ -808,8 +700,6 @@
                     expire: isAdmin ? 'Vĩnh viễn' : expireDate.toISOString(),
                     expireDisplay: isAdmin ? 'VĨNH VIỄN (ADMIN)' : expireDate.toLocaleString('vi-VN'),
                     status: 'active',
-                    deviceId: null,
-                    activatedAt: null,
                     days: days,
                     hours: hours,
                     minutes: minutes,
@@ -864,8 +754,6 @@
                         expire: 'Vĩnh viễn',
                         expireDisplay: 'VĨNH VIỄN (ADMIN)',
                         status: 'active',
-                        deviceId: null,
-                        activatedAt: null,
                         days: 99999,
                         hours: 0,
                         minutes: 0,
@@ -887,11 +775,15 @@
 
             function saveKeys() {
                 try { localStorage.setItem('aimlock_keys', JSON.stringify(keys)); } catch (e) {}
+                
+                if (isFirebaseConnected && firebaseDatabase) {
+                    keys.forEach(k => {
+                        firebaseDatabase.ref('keys/' + k.encryptedKey).set(k);
+                    });
+                }
             }
 
-            // ============================================================
-            //  ĐỒNG BỘ - LUÔN THÀNH CÔNG
-            // ============================================================
+            // ===== ĐỒNG BỘ TẤT CẢ KEY =====
             function syncAllKeys() {
                 const syncBtn = document.getElementById('syncKeyBtn');
                 
@@ -904,25 +796,46 @@
                 syncBtn.textContent = '⏳ Đang đồng bộ...';
                 showToast('🔄 Đang đồng bộ lên Firebase...', '');
 
-                // Đẩy tất cả key lên Firebase
-                const promises = keys.map(k => {
-                    return firebaseDatabase.ref('keys/' + k.encryptedKey).set(k);
-                });
-
-                Promise.all(promises).then(() => {
-                    keys.forEach(k => { k.synced = true; });
-                    saveKeys();
-                    renderKeys();
-                    $('statKeys').textContent = keys.length;
+                firebaseDatabase.ref('keys').once('value').then((snapshot) => {
+                    const data = snapshot.val();
+                    const firebaseKeys = data ? Object.values(data) : [];
                     
-                    showToast('✅ Đồng bộ thành công! ' + keys.length + ' key', 'success');
-                    syncBtn.disabled = false;
-                    syncBtn.textContent = '✅ Đã đồng bộ';
-                    setTimeout(() => {
+                    const localKeys = JSON.parse(localStorage.getItem('aimlock_keys') || '[]');
+                    const allKeys = [...firebaseKeys, ...localKeys];
+                    
+                    const uniqueKeys = [];
+                    const seen = new Set();
+                    allKeys.forEach(k => {
+                        if (k && k.encryptedKey && !seen.has(k.encryptedKey)) {
+                            seen.add(k.encryptedKey);
+                            uniqueKeys.push(k);
+                        }
+                    });
+                    
+                    const promises = uniqueKeys.map(k => {
+                        return firebaseDatabase.ref('keys/' + k.encryptedKey).set(k);
+                    });
+                    
+                    Promise.all(promises).then(() => {
+                        keys = uniqueKeys;
+                        keys.forEach(k => { k.synced = true; });
+                        saveKeys();
+                        renderKeys();
+                        $('statKeys').textContent = keys.length;
+                        
+                        showToast('✅ Đồng bộ thành công! ' + keys.length + ' key', 'success');
+                        syncBtn.disabled = false;
+                        syncBtn.textContent = '✅ Đã đồng bộ';
+                        setTimeout(() => {
+                            syncBtn.textContent = '🔄 Đồng bộ';
+                        }, 3000);
+                    }).catch((error) => {
+                        showToast('❌ Lỗi đồng bộ: ' + error.message, 'error');
+                        syncBtn.disabled = false;
                         syncBtn.textContent = '🔄 Đồng bộ';
-                    }, 3000);
+                    });
                 }).catch((error) => {
-                    showToast('❌ Lỗi đồng bộ: ' + error.message, 'error');
+                    showToast('❌ Lỗi kết nối Firebase: ' + error.message, 'error');
                     syncBtn.disabled = false;
                     syncBtn.textContent = '🔄 Đồng bộ';
                 });
@@ -1048,7 +961,6 @@
                                     ${timeLeft ? `<span style="color:#8a7a9e;font-size:9px;">${timeLeft}</span>` : ''}
                                     ${isDisabled ? '<span style="color:#ff4444;font-size:9px;">🚫 Đã vô hiệu</span>' : ''}
                                     ${isExpired && !isDisabled ? '<span style="color:#ff6b8a;font-size:9px;">⏰ Hết hạn</span>' : ''}
-                                    ${k.deviceId ? `<span class="device-id">🖥️ ${k.deviceId}</span>` : ''}
                                     <span class="status ${syncClass}">${syncStatus}</span>
                                     <span class="status ${statusClass}">${statusText}</span>
                                 </div>
@@ -1151,14 +1063,7 @@
                     return null;
                 }
 
-                if (type === 'admin') {
-                    const adminCount = keys.filter(k => k.isAdmin || k.type === 'admin').length;
-                    if (adminCount >= 2) {
-                        showToast('⚠️ Chỉ được tạo tối đa 2 key admin!', 'error');
-                        return null;
-                    }
-                }
-
+                // KHÔNG GIỚI HẠN SỐ LƯỢNG ADMIN
                 const keyData = createKeyData(customKey, type, days, hours, minutes, seconds);
 
                 if (keys.some(k => k.encryptedKey === keyData.encryptedKey)) {
@@ -1171,7 +1076,6 @@
                 renderKeys();
                 $('statKeys').textContent = keys.length;
 
-                // Đồng bộ lên Firebase ngay khi tạo
                 if (isFirebaseConnected && firebaseDatabase) {
                     firebaseDatabase.ref('keys/' + keyData.encryptedKey).set(keyData).then(() => {
                         keyData.synced = true;
@@ -1207,13 +1111,8 @@
                     return false;
                 }
 
-                if (keyData.deviceId && keyData.deviceId !== DEVICE_ID) {
-                    showToast('❌ Key đã được kích hoạt trên máy khác!', 'error');
-                    return false;
-                }
+                // KHÔNG GIỚI HẠN THIẾT BỊ - BỎ KIỂM TRA DEVICE ID
 
-                keyData.deviceId = DEVICE_ID;
-                keyData.activatedAt = getCurrentTime().full;
                 keyData.status = 'active';
                 saveKeys();
                 renderKeys();
@@ -1238,9 +1137,7 @@
                 return true;
             }
 
-            // ============================================================
-            //  CODE LINH TINH
-            // ============================================================
+            // ===== CODE LINH TINH =====
             function generateRandomLines() {
                 const templates = [
                     () => {
@@ -1366,6 +1263,70 @@
             }
 
             // ============================================================
+            //  UPDATE UI
+            // ============================================================
+            function updateUI() {
+                const isAdmin = currentUser?.data?.isAdmin || currentUser?.data?.type === 'admin';
+                
+                document.getElementById('userName').textContent = isAdmin ? 'ADMIN' : 'NAM VIP PRO';
+                document.getElementById('vipPlan').textContent = isAdmin ? '👑 ADMIN ⭐' : '💎 VIP PRO';
+                document.getElementById('expireDate').textContent = isAdmin ? 'HSD: VĨNH VIỄN' : 'HSD: 31/12/2030';
+                document.getElementById('statKeys').textContent = keys.length;
+
+                if (isAdmin) {
+                    document.getElementById('adminPanel').classList.add('show');
+                } else {
+                    document.getElementById('adminPanel').classList.remove('show');
+                }
+
+                if (currentUser && currentUser.data) {
+                    const remaining = getRemainingTime(currentUser.data);
+                    const slotText = document.getElementById('slotText');
+                    if (slotText) {
+                        if (isAdmin) {
+                            slotText.textContent = '∞';
+                        } else if (remaining && remaining.total !== Infinity) {
+                            slotText.textContent = `${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`;
+                        }
+                    }
+                }
+
+                updateFFMode(ffMode);
+                selectModule(selectedModule);
+
+                const items = document.querySelectorAll('.optimize-item');
+                items.forEach(item => {
+                    const opt = item.dataset.opt;
+                    if (optimizeState[opt]) {
+                        item.classList.add('active');
+                        const status = item.querySelector('.status');
+                        if (status) status.textContent = 'ON';
+                    } else {
+                        item.classList.remove('active');
+                        const status = item.querySelector('.status');
+                        if (status) status.textContent = 'OFF';
+                    }
+                });
+            }
+
+            // ============================================================
+            //  START EXPIRE CHECKER
+            // ============================================================
+            function startExpireChecker() {
+                if (expireTimer) {
+                    clearInterval(expireTimer);
+                }
+                expireTimer = setInterval(function() {
+                    if (currentUser) {
+                        const expired = checkExpireAndLogout();
+                        if (expired) {
+                            renderKeys();
+                        }
+                    }
+                }, 1000);
+            }
+
+            // ============================================================
             //  CHECK EXPIRE
             // ============================================================
             function checkExpireAndLogout() {
@@ -1454,15 +1415,20 @@
                 showToast('🎮 Đang mở Free Fire (' + modeText + ')...', 'success');
 
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-                const url = mode === 'max' ?
-                    'itms-apps://apps.apple.com/app/id1477712624' :
-                    'itms-apps://apps.apple.com/app/id1300146617';
-
+                const isAndroid = /Android/.test(navigator.userAgent);
+                
                 if (isIOS) {
-                    window.location.href = url;
+                    window.location.href = 'freefire://';
+                    setTimeout(() => {
+                        window.location.href = 'itms-apps://apps.apple.com/app/id1300146617';
+                    }, 2000);
+                } else if (isAndroid) {
+                    window.location.href = 'intent://#Intent;package=com.dts.freefireth;end';
+                    setTimeout(() => {
+                        window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefireth';
+                    }, 2000);
                 } else {
-                    showToast('📱 Vui lòng mở trên iPhone để chơi Free Fire!', 'error');
-                    setTimeout(() => { window.open(url, '_blank'); }, 1000);
+                    showToast('📱 Vui lòng mở trên điện thoại!', 'error');
                 }
             }
 
@@ -1485,65 +1451,8 @@
                 showToast('🚪 Đã đăng xuất');
             }
 
-            function updateUI() {
-                const isAdmin = currentUser?.data?.isAdmin || currentUser?.data?.type === 'admin';
-                
-                $('userName').textContent = isAdmin ? 'ADMIN' : 'NAM VIP PRO';
-                $('vipPlan').textContent = isAdmin ? '👑 ADMIN ⭐' : '💎 VIP PRO';
-                $('expireDate').textContent = isAdmin ? 'HSD: VĨNH VIỄN' : 'HSD: 31/12/2030';
-                $('statKeys').textContent = keys.length;
-
-                if (isAdmin) {
-                    document.getElementById('adminPanel').classList.add('show');
-                } else {
-                    document.getElementById('adminPanel').classList.remove('show');
-                }
-
-                if (currentUser && currentUser.data) {
-                    const remaining = getRemainingTime(currentUser.data);
-                    const slotText = document.getElementById('slotText');
-                    if (slotText) {
-                        if (isAdmin) {
-                            slotText.textContent = '∞';
-                        } else if (remaining && remaining.total !== Infinity) {
-                            slotText.textContent =
-                                `${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`;
-                        }
-                    }
-                }
-
-                updateFFMode(ffMode);
-                selectModule(selectedModule);
-
-                const items = qsa('.optimize-item');
-                items.forEach(item => {
-                    const o = item.dataset.opt;
-                    if (optimizeState[o]) {
-                        item.classList.add('active');
-                        const status = item.querySelector('.status');
-                        if (status) status.textContent = 'ON';
-                    } else {
-                        item.classList.remove('active');
-                        const status = item.querySelector('.status');
-                        if (status) status.textContent = 'OFF';
-                    }
-                });
-            }
-
-            function startExpireChecker() {
-                if (expireTimer) { clearInterval(expireTimer); }
-                expireTimer = setInterval(function() {
-                    if (currentUser) {
-                        const expired = checkExpireAndLogout();
-                        if (expired) {
-                            renderKeys();
-                        }
-                    }
-                }, 1000);
-            }
-
             // ============================================================
-            //  FIREBASE - LẮNG NGHE THAY ĐỔI
+            //  FIREBASE - LẮNG NGHE
             // ============================================================
             function listenFirebase() {
                 if (!isFirebaseConnected || !firebaseDatabase) {
@@ -1574,7 +1483,6 @@
                             saveKeys();
                             renderKeys();
                             $('statKeys').textContent = keys.length;
-                            showToast('🔄 Đã cập nhật dữ liệu từ Firebase', 'success');
                         }
                     }
                 }, (error) => {
@@ -1587,9 +1495,6 @@
             //  INIT
             // ============================================================
             function init() {
-                // Khởi tạo Firebase
-                initFirebase();
-                
                 loadKeys();
                 
                 setTimeout(listenFirebase, 2000);
@@ -1599,7 +1504,7 @@
                     try {
                         const user = JSON.parse(savedUser);
                         const keyData = keys.find(k => k.key === user.key);
-                        if (keyData && keyData.deviceId === DEVICE_ID && keyData.status !== 'disabled' && !isKeyExpired(keyData)) {
+                        if (keyData && keyData.status !== 'disabled' && !isKeyExpired(keyData)) {
                             currentUser = user;
                             document.getElementById('loginScreen').hidden = true;
                             document.getElementById('mainApp').style.display = 'block';
@@ -1610,8 +1515,6 @@
                             localStorage.removeItem('aimlock_current_user');
                             if (keyData && keyData.status === 'disabled') {
                                 showToast('⚠️ Key đã bị vô hiệu hóa!', 'error');
-                            } else if (keyData && keyData.deviceId !== DEVICE_ID) {
-                                showToast('⚠️ Key đã được kích hoạt trên máy khác!', 'error');
                             }
                         }
                     } catch (e) {
