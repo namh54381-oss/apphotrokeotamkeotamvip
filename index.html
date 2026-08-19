@@ -1409,24 +1409,46 @@
                 });
             }
 
+            // ============================================================
+            //  MỞ GAME - PHÂN BIỆT FF THƯỜNG VÀ FF MAX
+            // ============================================================
             function openGame() {
                 const mode = ffMode;
                 const modeText = mode === 'max' ? 'FF MAX' : 'FF THƯỜNG';
-                showToast('🎮 Đang mở Free Fire (' + modeText + ')...', 'success');
+                showToast('🎮 Đang mở ' + modeText + '...', 'success');
 
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 const isAndroid = /Android/.test(navigator.userAgent);
                 
                 if (isIOS) {
-                    window.location.href = 'freefire://';
-                    setTimeout(() => {
-                        window.location.href = 'itms-apps://apps.apple.com/app/id1300146617';
-                    }, 2000);
+                    // iOS - phân biệt FF và FF MAX
+                    if (mode === 'max') {
+                        // FF MAX - URL Scheme khác
+                        window.location.href = 'freefiremax://';
+                        // Fallback sang AppStore FF MAX
+                        setTimeout(() => {
+                            window.location.href = 'itms-apps://apps.apple.com/app/id1477712624';
+                        }, 2000);
+                    } else {
+                        // FF thường
+                        window.location.href = 'freefire://';
+                        setTimeout(() => {
+                            window.location.href = 'itms-apps://apps.apple.com/app/id1300146617';
+                        }, 2000);
+                    }
                 } else if (isAndroid) {
-                    window.location.href = 'intent://#Intent;package=com.dts.freefireth;end';
-                    setTimeout(() => {
-                        window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefireth';
-                    }, 2000);
+                    // Android - phân biệt FF và FF MAX
+                    if (mode === 'max') {
+                        window.location.href = 'intent://#Intent;package=com.dts.freefiremax;end';
+                        setTimeout(() => {
+                            window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefiremax';
+                        }, 2000);
+                    } else {
+                        window.location.href = 'intent://#Intent;package=com.dts.freefireth;end';
+                        setTimeout(() => {
+                            window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefireth';
+                        }, 2000);
+                    }
                 } else {
                     showToast('📱 Vui lòng mở trên điện thoại!', 'error');
                 }
