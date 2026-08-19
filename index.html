@@ -160,6 +160,17 @@
         .admin-row .time-input { display: flex; align-items: center; gap: 4px; background: #0a0615; border: 1px solid rgba(139,92,246,.2); border-radius: 10px; padding: 0 8px; }
         .admin-row .time-input input { width: 40px; min-width: 30px; padding: 8px 2px; text-align: center; border: 0; background: none; color: #fff; outline: 0; }
         .admin-row .time-input span { color: #6a5a7e; font-weight: 700; }
+        .admin-row .device-select { 
+            background: #0a0615; 
+            border: 1px solid rgba(139,92,246,.2); 
+            border-radius: 10px; 
+            padding: 10px 12px; 
+            color: #fff; 
+            outline: 0; 
+            cursor: pointer;
+            min-width: 130px;
+        }
+        .admin-row .device-select option { background: #0a0615; }
         .admin-row .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
         .admin-row .btn-group button { padding: 10px 18px; border: 0; border-radius: 10px; color: #fff; font-weight: 700; cursor: pointer; transition: .2s; }
         .admin-row .btn-group button:hover { opacity: .85; }
@@ -177,6 +188,10 @@
         .key-item .key-info .status.expired { background: rgba(255,0,0,.1); color: #ff6b8a; }
         .key-item .key-info .status.disabled { background: rgba(255,0,0,.2); color: #ff4444; }
         .key-item .key-info .status.synced { background: rgba(74,222,128,.2); color: #4ade80; }
+        .key-item .key-info .status.used { background: rgba(255,165,0,.2); color: #ffa500; }
+        .key-item .key-info .badge-device { padding: 1px 8px; border-radius: 10px; font-size: 8px; font-weight: 700; }
+        .key-item .key-info .badge-device.one { background: rgba(255,165,0,.2); color: #ffa500; }
+        .key-item .key-info .badge-device.multi { background: rgba(74,222,128,.2); color: #4ade80; }
         .key-item .key-info .vip-badge { background: rgba(192,132,252,.2); color: #c084fc; padding: 1px 8px; border-radius: 10px; font-weight: 700; }
         .key-item .key-info .admin-badge { background: linear-gradient(135deg, #7c3aed, #4c1d95); color: #fff; padding: 1px 10px; border-radius: 10px; font-weight: 700; }
         .key-item .del-btn { color: #ff6b8a; cursor: pointer; border: 0; background: none; font-size: 16px; padding: 0 4px; }
@@ -313,6 +328,7 @@
             .admin-row { flex-direction: column; }
             .admin-row input, .admin-row select { width: 100%; }
             .admin-row .time-input input { width: 35px; }
+            .admin-row .device-select { width: 100%; }
             .input-wrap .zalo-hint { flex-direction: column; gap: 4px; }
             .admin-row .btn-group { width: 100%; }
             .admin-row .btn-group button { flex: 1; }
@@ -395,7 +411,7 @@
                     <span class="sub">| Zalo: 0962086812</span>
                 </h3>
                 <p style="color:#8a7a9e; font-size:12px; margin-bottom:12px;">
-                    🔐 Tự tạo key - Không giới hạn thiết bị
+                    🔐 Tạo key 1 máy hoặc nhiều máy
                 </p>
                 
                 <div class="admin-row">
@@ -404,6 +420,10 @@
                         <option value="user">Key Thường</option>
                         <option value="vip">Key VIP</option>
                         <option value="admin">Key Admin</option>
+                    </select>
+                    <select id="deviceTypeSelect" class="device-select">
+                        <option value="one">🔒 Key 1 máy</option>
+                        <option value="multi">📱 Key nhiều máy</option>
                     </select>
                     <div class="time-input">
                         <input id="keyDaysInput" type="number" placeholder="Ngày" value="30" min="1" max="365">
@@ -676,7 +696,7 @@
                 };
             }
 
-            function createKeyData(customKey, type = 'user', days = 30, hours = 0, minutes = 0, seconds = 0) {
+            function createKeyData(customKey, type = 'user', deviceType = 'one', days = 30, hours = 0, minutes = 0, seconds = 0) {
                 const key = customKey && customKey.trim() ? customKey.trim() : generateKey();
                 const time = getCurrentTime();
                 const expireDate = new Date();
@@ -693,6 +713,7 @@
                     type: type,
                     isVip: isVip,
                     isAdmin: isAdmin,
+                    deviceType: isAdmin ? 'multi' : deviceType, // Admin luôn là multi
                     created: time.full,
                     date: time.date,
                     time: time.time,
@@ -700,6 +721,8 @@
                     expire: isAdmin ? 'Vĩnh viễn' : expireDate.toISOString(),
                     expireDisplay: isAdmin ? 'VĨNH VIỄN (ADMIN)' : expireDate.toLocaleString('vi-VN'),
                     status: 'active',
+                    deviceId: null, // Chỉ dùng cho key 1 máy
+                    deviceIds: [], // Chỉ dùng cho key nhiều máy
                     days: days,
                     hours: hours,
                     minutes: minutes,
@@ -747,6 +770,7 @@
                         type: 'admin',
                         isVip: true,
                         isAdmin: true,
+                        deviceType: 'multi',
                         created: getCurrentTime().full,
                         date: getCurrentTime().date,
                         time: getCurrentTime().time,
@@ -754,6 +778,8 @@
                         expire: 'Vĩnh viễn',
                         expireDisplay: 'VĨNH VIỄN (ADMIN)',
                         status: 'active',
+                        deviceId: null,
+                        deviceIds: [],
                         days: 99999,
                         hours: 0,
                         minutes: 0,
@@ -907,6 +933,8 @@
                     const isDisabled = k.status === 'disabled';
                     const isAdmin = k.isAdmin || k.type === 'admin';
                     const isCurrentUser = currentUser && currentUser.key === k.key;
+                    const isOneDevice = k.deviceType === 'one' && !isAdmin;
+                    const isMultiDevice = k.deviceType === 'multi' || isAdmin;
                     
                     let statusText = '● ACTIVE';
                     let statusClass = 'active';
@@ -935,6 +963,22 @@
                         timeLeft = `⏱️ ${remaining.days}d ${remaining.hours}h ${remaining.minutes}m ${remaining.seconds}s`;
                     }
 
+                    // Kiểm tra key 1 máy đã được sử dụng chưa
+                    let deviceStatus = '';
+                    if (isOneDevice && k.deviceId) {
+                        const isThisDevice = k.deviceId === DEVICE_ID;
+                        deviceStatus = isThisDevice ? '✅ Máy này' : '🔒 Đã dùng máy khác';
+                        if (!isThisDevice && !isDisabled && !isExpired) {
+                            statusText = '🔒 ĐÃ DÙNG';
+                            statusClass = 'used';
+                            borderColor = '#ffa500';
+                        }
+                    }
+                    if (isMultiDevice && k.deviceIds && k.deviceIds.length > 0) {
+                        const isThisDevice = k.deviceIds.includes(DEVICE_ID);
+                        deviceStatus = isThisDevice ? '✅ Đã kích hoạt' : `📱 ${k.deviceIds.length} máy`;
+                    }
+
                     let canDisable = true;
                     if (isAdmin) {
                         const adminCount = keys.filter(k2 => k2.isAdmin || k2.type === 'admin').length;
@@ -945,6 +989,7 @@
                     const displayKey = isAdmin ? '👑 ' + k.key : k.key;
                     const syncStatus = k.synced ? '☁️ Đã đồng bộ' : '● LOCAL';
                     const syncClass = k.synced ? 'synced' : 'active';
+                    const deviceBadge = isOneDevice ? '🔒 1 máy' : '📱 Nhiều máy';
 
                     html += `
                         <div class="key-item ${isDisabled ? 'disabled' : ''}" style="border-left: 3px solid ${borderColor}; opacity: ${opacity};">
@@ -958,9 +1003,11 @@
                                     <span class="time">⏰ ${k.time}</span>
                                     ${k.isVip && !isAdmin ? '<span class="vip-badge">⭐ VIP</span>' : ''}
                                     ${isAdmin ? '<span class="admin-badge">⭐ ADMIN</span>' : ''}
+                                    <span class="badge-device ${isOneDevice ? 'one' : 'multi'}">${deviceBadge}</span>
                                     ${timeLeft ? `<span style="color:#8a7a9e;font-size:9px;">${timeLeft}</span>` : ''}
                                     ${isDisabled ? '<span style="color:#ff4444;font-size:9px;">🚫 Đã vô hiệu</span>' : ''}
                                     ${isExpired && !isDisabled ? '<span style="color:#ff6b8a;font-size:9px;">⏰ Hết hạn</span>' : ''}
+                                    ${deviceStatus ? `<span style="color:#ffa500;font-size:9px;">${deviceStatus}</span>` : ''}
                                     <span class="status ${syncClass}">${syncStatus}</span>
                                     <span class="status ${statusClass}">${statusText}</span>
                                 </div>
@@ -1056,7 +1103,7 @@
             }
 
             // ===== CREATE KEY =====
-            function createKey(customKey, type = 'user', days = 30, hours = 0, minutes = 0, seconds = 0) {
+            function createKey(customKey, type = 'user', deviceType = 'one', days = 30, hours = 0, minutes = 0, seconds = 0) {
                 const isAdminUser = currentUser && (currentUser.data?.isAdmin || currentUser.data?.type === 'admin');
                 if (!isAdminUser) {
                     showToast('⚠️ Chỉ ADMIN mới có quyền tạo key!', 'error');
@@ -1064,7 +1111,7 @@
                 }
 
                 // KHÔNG GIỚI HẠN SỐ LƯỢNG ADMIN
-                const keyData = createKeyData(customKey, type, days, hours, minutes, seconds);
+                const keyData = createKeyData(customKey, type, deviceType, days, hours, minutes, seconds);
 
                 if (keys.some(k => k.encryptedKey === keyData.encryptedKey)) {
                     showToast('⚠️ Key đã tồn tại!', 'error');
@@ -1087,8 +1134,9 @@
                     });
                 }
 
+                const deviceText = deviceType === 'one' ? '🔒 1 máy' : '📱 Nhiều máy';
                 const timeStr = type === 'admin' ? 'VĨNH VIỄN' : `${days}d ${hours}h ${minutes}m ${seconds}s`;
-                showToast(`✅ Key ${type.toUpperCase()}: ${keyData.key} (${timeStr})`, 'success');
+                showToast(`✅ Key ${type.toUpperCase()}: ${keyData.key} (${deviceText} - ${timeStr})`, 'success');
                 return keyData;
             }
 
@@ -1111,7 +1159,24 @@
                     return false;
                 }
 
-                // KHÔNG GIỚI HẠN THIẾT BỊ - BỎ KIỂM TRA DEVICE ID
+                // Kiểm tra loại key: 1 máy hay nhiều máy
+                if (keyData.deviceType === 'one' && !keyData.isAdmin) {
+                    // Key 1 máy - kiểm tra deviceId
+                    if (keyData.deviceId && keyData.deviceId !== DEVICE_ID) {
+                        showToast('❌ Key đã được kích hoạt trên máy khác!', 'error');
+                        return false;
+                    }
+                    // Gán deviceId cho key
+                    keyData.deviceId = DEVICE_ID;
+                } else if (keyData.deviceType === 'multi' || keyData.isAdmin) {
+                    // Key nhiều máy - thêm deviceId vào danh sách
+                    if (!keyData.deviceIds) {
+                        keyData.deviceIds = [];
+                    }
+                    if (!keyData.deviceIds.includes(DEVICE_ID)) {
+                        keyData.deviceIds.push(DEVICE_ID);
+                    }
+                }
 
                 keyData.status = 'active';
                 saveKeys();
@@ -1137,7 +1202,9 @@
                 return true;
             }
 
-            // ===== CODE LINH TINH =====
+            // ============================================================
+            //  CODE LINH TINH
+            // ============================================================
             function generateRandomLines() {
                 const templates = [
                     () => {
@@ -1421,23 +1488,18 @@
                 const isAndroid = /Android/.test(navigator.userAgent);
                 
                 if (isIOS) {
-                    // iOS - phân biệt FF và FF MAX
                     if (mode === 'max') {
-                        // FF MAX - URL Scheme khác
                         window.location.href = 'freefiremax://';
-                        // Fallback sang AppStore FF MAX
                         setTimeout(() => {
                             window.location.href = 'itms-apps://apps.apple.com/app/id1477712624';
                         }, 2000);
                     } else {
-                        // FF thường
                         window.location.href = 'freefire://';
                         setTimeout(() => {
                             window.location.href = 'itms-apps://apps.apple.com/app/id1300146617';
                         }, 2000);
                     }
                 } else if (isAndroid) {
-                    // Android - phân biệt FF và FF MAX
                     if (mode === 'max') {
                         window.location.href = 'intent://#Intent;package=com.dts.freefiremax;end';
                         setTimeout(() => {
@@ -1567,6 +1629,7 @@
                 $('createKeyBtn').onclick = function() {
                     const input = $('newKeyInput');
                     const type = document.getElementById('keyTypeSelect').value;
+                    const deviceType = document.getElementById('deviceTypeSelect').value;
                     
                     let days = parseInt(document.getElementById('keyDaysInput').value) || 0;
                     let hours = parseInt(document.getElementById('keyHoursInput').value) || 0;
@@ -1584,7 +1647,7 @@
                         return;
                     }
 
-                    const key = createKey(input.value, type, days, hours, minutes, seconds);
+                    const key = createKey(input.value, type, deviceType, days, hours, minutes, seconds);
                     if (key) input.value = '';
                 };
 
