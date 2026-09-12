@@ -31,21 +31,10 @@
         }
         .app { width: 100%; max-width: 450px; position: relative; }
 
-        /* ===== SKULL FALLING ===== */
         .skull-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .skull { position: absolute; font-size: 28px; opacity: 0.08; animation: skullFall linear infinite; pointer-events: none; }
         @keyframes skullFall { 0% { transform: translateY(-60px) rotate(0deg); opacity: 0.12; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0.02; } }
 
-        /* ===== GLASSMORPHISM ===== */
-        .glass {
-            background: rgba(18,10,35,0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(139,92,246,0.12);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        }
-
-        /* ===== LOGIN SCREEN ===== */
         #loginScreen {
             background: linear-gradient(180deg, rgba(18,10,35,0.97), rgba(8,4,18,0.98));
             border: 1px solid rgba(139,92,246,0.15);
@@ -160,7 +149,6 @@
         .status.error { color: #ff6b8a; }
         .status.success { color: #a78bfa; }
 
-        /* ===== MAIN APP ===== */
         #mainApp { display: none; position: relative; z-index: 1; }
 
         .topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 18px; }
@@ -320,6 +308,41 @@
             letter-spacing: 1px;
         }
 
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 4px;
+        }
+        .admin-tab {
+            flex: 1;
+            padding: 10px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: #6a5a7e;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .admin-tab.active {
+            background: rgba(139,92,246,0.15);
+            color: #c084fc;
+        }
+        .admin-tab:hover:not(.active) {
+            color: #a78bfa;
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+        .admin-tab-content.active {
+            display: block;
+        }
+
         .admin-row { display: flex; gap: 8px; flex-wrap: wrap; }
         .admin-row input { 
             flex: 1; 
@@ -395,6 +418,182 @@
         .admin-row .btn-group .btn-create { background: linear-gradient(135deg, #7c3aed, #4c1d95); box-shadow: 0 4px 15px rgba(124,58,237,0.2); }
         .admin-row .btn-group .btn-sync { background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 4px 15px rgba(5,150,105,0.2); }
         .admin-row .btn-group .btn-sync:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* ===== BẢNG KEY ĐÃ TẠO RIÊNG ===== */
+        .created-keys-section {
+            margin-top: 16px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(139,92,246,0.12);
+            border-radius: 16px;
+            overflow: hidden;
+            display: none;
+        }
+        .created-keys-section.show {
+            display: block;
+        }
+        .created-keys-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: linear-gradient(90deg, rgba(124,58,237,0.15), rgba(76,29,149,0.1));
+            border-bottom: 1px solid rgba(139,92,246,0.15);
+        }
+        .created-keys-header .title {
+            color: #c084fc;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .created-keys-header .count-badge {
+            background: rgba(74,222,128,0.15);
+            color: #4ade80;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .created-keys-body {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(139,92,246,0.2) transparent;
+        }
+        .created-keys-body::-webkit-scrollbar { width: 4px; }
+        .created-keys-body::-webkit-scrollbar-track { background: transparent; }
+        .created-keys-body::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.2); border-radius: 10px; }
+
+        .created-key-item {
+            background: rgba(18,10,35,0.7);
+            border: 1px solid rgba(139,92,246,0.1);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            transition: .2s;
+            position: relative;
+        }
+        .created-key-item:hover {
+            border-color: rgba(139,92,246,0.25);
+            background: rgba(18,10,35,0.9);
+        }
+        .created-key-item .key-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .created-key-item .key-index {
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            color: #fff;
+            font-weight: 900;
+            font-size: 11px;
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .created-key-item .key-value {
+            color: #c084fc;
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 700;
+            word-break: break-all;
+            flex: 1;
+        }
+        .created-key-item .key-del {
+            background: rgba(255,107,138,0.1);
+            border: 1px solid rgba(255,107,138,0.2);
+            color: #ff6b8a;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+            flex-shrink: 0;
+        }
+        .created-key-item .key-del:hover {
+            background: rgba(255,107,138,0.2);
+            border-color: #ff6b8a;
+        }
+        .created-key-item .key-meta {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+            padding-left: 32px;
+        }
+        .created-key-item .key-meta .meta-badge {
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .created-key-item .key-meta .meta-badge.type-vip {
+            background: rgba(192,132,252,0.15);
+            color: #c084fc;
+        }
+        .created-key-item .key-meta .meta-badge.type-user {
+            background: rgba(139,92,246,0.1);
+            color: #a78bfa;
+        }
+        .created-key-item .key-meta .meta-badge.device-one {
+            background: rgba(255,165,0,0.15);
+            color: #ffa500;
+        }
+        .created-key-item .key-meta .meta-badge.device-multi {
+            background: rgba(74,222,128,0.15);
+            color: #4ade80;
+        }
+        .created-key-item .key-meta .meta-badge.synced {
+            background: rgba(74,222,128,0.15);
+            color: #4ade80;
+        }
+        .created-key-item .key-meta .meta-badge.local {
+            background: rgba(139,92,246,0.1);
+            color: #6a5a7e;
+        }
+
+        .created-keys-actions {
+            display: flex;
+            gap: 8px;
+            padding: 12px 14px;
+            background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(139,92,246,0.08);
+        }
+        .created-keys-actions button {
+            flex: 1;
+            padding: 12px;
+            border: 0;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .created-keys-actions button:hover { opacity: .85; transform: translateY(-1px); }
+        .created-keys-actions .btn-export-txt { 
+            background: linear-gradient(135deg, #f59e0b, #d97706); 
+            box-shadow: 0 4px 15px rgba(245,158,11,0.2);
+        }
+        .created-keys-actions .btn-clear-all { 
+            background: linear-gradient(135deg, #dc2626, #991b1b); 
+            box-shadow: 0 4px 15px rgba(220,38,38,0.2);
+        }
 
         .key-list { margin-top: 12px; max-height: 300px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(139,92,246,0.2) transparent; }
         .key-list::-webkit-scrollbar { width: 4px; }
@@ -527,7 +726,6 @@
         .optimize-item .status { font-size: 9px; color: #4a3a5e; margin-top: 2px; display: block; font-weight: 600; }
         .optimize-item.active .status { color: #a78bfa; }
 
-        /* ===== NÚT KÍCH HOẠT - CHUYÊN NGHIỆP ===== */
         .btn-activate {
             display: block;
             width: 100%;
@@ -590,7 +788,6 @@
         .zalo-btn:hover { border-color: #c084fc; background: rgba(139,92,246,0.08); transform: translateY(-2px); }
         .zalo-btn .icon { font-size: 18px; margin-right: 8px; }
 
-        /* ===== TOAST ===== */
         .toast { 
             position: fixed; 
             bottom: 30px; 
@@ -614,7 +811,6 @@
         .toast.success { border-color: rgba(167,139,250,0.3); }
         .toast.error { border-color: rgba(255,107,138,0.3); }
 
-        /* ===== MODAL ===== */
         .modal-overlay { 
             position: fixed; 
             inset: 0; 
@@ -749,8 +945,6 @@
         }
         .modal-box .btn-open-game:active { transform: scale(0.98); }
 
-        /* ĐÃ XÓA NÚT ĐĂNG XUẤT TRONG MODAL */
-
         @media (max-width: 430px) {
             .account-card { flex-wrap: wrap; padding: 16px 18px; gap: 10px; }
             .avatar { width: 48px; height: 48px; font-size: 20px; }
@@ -772,6 +966,7 @@
             #loginScreen .logo { font-size: 56px; }
             #loginScreen h1 { font-size: 22px; }
             .modal-box { padding: 20px; }
+            .created-key-item .key-value { font-size: 11px; }
         }
     </style>
 </head>
@@ -852,42 +1047,98 @@
                     <span class="admin-badge">⭐ ADMIN</span>
                     <span class="sub">| Zalo: 0962086812</span>
                 </h3>
-                <p style="color:#5a4a6e; font-size:12px; margin-bottom:12px;">
-                    🔐 Tạo key 1 máy hoặc nhiều máy
-                </p>
                 
-                <div class="admin-row">
-                    <input id="newKeyInput" type="text" placeholder="Nhập key hoặc để trống">
-                    <select id="keyTypeSelect">
-                        <option value="user">Key Thường</option>
-                        <option value="vip">Key VIP</option>
-                        <option value="admin">Key Admin</option>
-                    </select>
-                    <select id="deviceTypeSelect" class="device-select">
-                        <option value="one">🔒 Key 1 máy</option>
-                        <option value="multi">📱 Key nhiều máy</option>
-                    </select>
-                    <div class="time-input">
-                        <input id="keyDaysInput" type="number" placeholder="Ngày" value="30" min="1" max="365">
-                        <span>d</span>
-                    </div>
-                    <div class="time-input">
-                        <input id="keyHoursInput" type="number" placeholder="Giờ" value="0" min="0" max="23">
-                        <span>h</span>
-                    </div>
-                    <div class="time-input">
-                        <input id="keyMinutesInput" type="number" placeholder="Phút" value="0" min="0" max="59">
-                        <span>m</span>
-                    </div>
-                    <div class="time-input">
-                        <input id="keySecondsInput" type="number" placeholder="Giây" value="0" min="0" max="59">
-                        <span>s</span>
-                    </div>
-                    <div class="btn-group">
-                        <button class="btn-create" id="createKeyBtn">➕ Tạo Key</button>
-                        <button class="btn-sync" id="syncKeyBtn">🔄 Đồng bộ</button>
+                <!-- Admin Tabs -->
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="single">🔑 Tạo Key</button>
+                    <button class="admin-tab" data-tab="multi">📦 Tạo Nhiều Key</button>
+                </div>
+
+                <!-- Tab: Tạo key đơn -->
+                <div class="admin-tab-content active" id="tab-single">
+                    <p style="color:#5a4a6e; font-size:12px; margin-bottom:12px;">
+                        🔐 Tạo key 1 máy hoặc nhiều máy
+                    </p>
+                    
+                    <div class="admin-row">
+                        <input id="newKeyInput" type="text" placeholder="Nhập key hoặc để trống">
+                        <select id="keyTypeSelect">
+                            <option value="user">Key Thường</option>
+                            <option value="vip">Key VIP</option>
+                            <option value="admin">Key Admin</option>
+                        </select>
+                        <select id="deviceTypeSelect" class="device-select">
+                            <option value="one">🔒 Key 1 máy</option>
+                            <option value="multi">📱 Key nhiều máy</option>
+                        </select>
+                        <div class="time-input">
+                            <input id="keyDaysInput" type="number" placeholder="Ngày" value="30" min="1" max="365">
+                            <span>d</span>
+                        </div>
+                        <div class="time-input">
+                            <input id="keyHoursInput" type="number" placeholder="Giờ" value="0" min="0" max="23">
+                            <span>h</span>
+                        </div>
+                        <div class="time-input">
+                            <input id="keyMinutesInput" type="number" placeholder="Phút" value="0" min="0" max="59">
+                            <span>m</span>
+                        </div>
+                        <div class="time-input">
+                            <input id="keySecondsInput" type="number" placeholder="Giây" value="0" min="0" max="59">
+                            <span>s</span>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-create" id="createKeyBtn">➕ Tạo Key</button>
+                            <button class="btn-sync" id="syncKeyBtn">🔄 Đồng bộ</button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Tab: Tạo nhiều key -->
+                <div class="admin-tab-content" id="tab-multi">
+                    <p style="color:#5a4a6e; font-size:12px; margin-bottom:12px;">
+                        📦 Tạo hàng loạt key cùng lúc
+                    </p>
+                    
+                    <div class="admin-row">
+                        <input id="multiKeyCount" type="number" placeholder="Số lượng key" value="6" min="1" max="100" style="flex:1;">
+                        <select id="multiKeyType">
+                            <option value="user">Key Thường</option>
+                            <option value="vip">Key VIP</option>
+                        </select>
+                        <select id="multiDeviceType" class="device-select">
+                            <option value="one">🔒 Key 1 máy</option>
+                            <option value="multi">📱 Key nhiều máy</option>
+                        </select>
+                        <div class="time-input">
+                            <input id="multiDaysInput" type="number" placeholder="Ngày" value="30" min="1" max="365">
+                            <span>d</span>
+                        </div>
+                        <div class="time-input">
+                            <input id="multiHoursInput" type="number" placeholder="Giờ" value="0" min="0" max="23">
+                            <span>h</span>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-create" id="createMultiKeyBtn">📦 Tạo Nhiều Key</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== BẢNG KEY ĐÃ TẠO RIÊNG ===== -->
+                    <div class="created-keys-section" id="createdKeysSection">
+                        <div class="created-keys-header">
+                            <span class="title">🔑 KEY ĐÃ TẠO</span>
+                            <span class="count-badge" id="createdKeysCount">0 key</span>
+                        </div>
+                        <div class="created-keys-body" id="createdKeysBody">
+                            <!-- Key items sẽ được render ở đây -->
+                        </div>
+                        <div class="created-keys-actions">
+                            <button class="btn-export-txt" id="exportCreatedTxtBtn">📄 Xuất TXT</button>
+                            <button class="btn-clear-all" id="clearAllCreatedKeysBtn">🗑️ Xóa Tất Cả</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="key-list" id="keyList"></div>
             </div>
 
@@ -957,7 +1208,6 @@
                 </div>
             </div>
 
-            <!-- Nút KÍCH HOẠT -->
             <button class="btn-activate" id="activateCodeBtn">
                 <span class="icon">⚡</span>
                 KÍCH HOẠT
@@ -979,7 +1229,6 @@
             <div class="code-container" id="codeContainer"></div>
             <div class="success-text" id="successText" style="display:none;">✅ KÍCH HOẠT THÀNH CÔNG!</div>
             
-            <!-- Chỉ có nút MỞ GAME, đã bỏ nút Đăng xuất -->
             <button class="btn-open-game" id="modalOpenGameBtn">
                 🎮 MỞ GAME
             </button>
@@ -1001,9 +1250,6 @@
             measurementId: "G-GYJP4SSZ2F"
         };
 
-        // ============================================================
-        //  KHỞI TẠO FIREBASE (CHẠY NGẦM)
-        // ============================================================
         let firebaseApp, firebaseDatabase, firebaseAuth;
         let isFirebaseConnected = false;
 
@@ -1033,10 +1279,6 @@
             const $ = id => document.getElementById(id);
             const qsa = s => document.querySelectorAll(s);
 
-            // ============================================================
-            //  MÃ HÓA KEY
-            // ============================================================
-            
             function encryptKey(key) {
                 let encrypted = '';
                 const salt = 'AIMLOCK2024SECURE';
@@ -1106,10 +1348,6 @@
             }
             createSkulls();
 
-            // ============================================================
-            //  KEY SYSTEM
-            // ============================================================
-
             let keys = JSON.parse(localStorage.getItem('aimlock_keys') || '[]');
             let ffMode = localStorage.getItem('aimlock_ff_mode') || 'normal';
             let selectedModule = localStorage.getItem('aimlock_selected_module') || 'aimlockhead';
@@ -1117,6 +1355,7 @@
                 '{"sensitivity":true,"fps":true,"chongrung":true}');
             let currentUser = null;
             let expireTimer = null;
+            let createdKeys = []; // Danh sách key đã tạo (riêng biệt)
 
             function generateKey() {
                 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -1252,7 +1491,6 @@
                 }
             }
 
-            // ===== ĐỒNG BỘ TẤT CẢ KEY =====
             function syncAllKeys() {
                 const syncBtn = document.getElementById('syncKeyBtn');
                 
@@ -1310,7 +1548,6 @@
                 });
             }
 
-            // ===== ĐỒNG BỘ 1 KEY =====
             function syncSingleKey(keyData) {
                 if (!isFirebaseConnected || !firebaseDatabase) {
                     showToast('❌ Firebase chưa kết nối!', 'error');
@@ -1321,12 +1558,6 @@
                 if (btn) {
                     btn.textContent = '⏳';
                     btn.disabled = true;
-                }
-
-                const statusEl = btn ? btn.closest('.key-item').querySelector('.status') : null;
-                if (statusEl) {
-                    statusEl.textContent = '⏳ ĐANG ĐỒNG BỘ';
-                    statusEl.className = 'status syncing';
                 }
 
                 firebaseDatabase.ref('keys/' + keyData.encryptedKey).set(keyData).then(() => {
@@ -1341,19 +1572,11 @@
                             btn.textContent = '🔄';
                         }, 2000);
                     }
-                    if (statusEl) {
-                        statusEl.textContent = '☁️ Đã đồng bộ';
-                        statusEl.className = 'status synced';
-                    }
                 }).catch((error) => {
                     showToast('❌ Lỗi đồng bộ key: ' + error.message, 'error');
                     if (btn) {
                         btn.textContent = '🔄';
                         btn.disabled = false;
-                    }
-                    if (statusEl) {
-                        statusEl.textContent = '● LOCAL';
-                        statusEl.className = 'status active';
                     }
                 });
             }
@@ -1542,7 +1765,6 @@
                 });
             }
 
-            // ===== CREATE KEY =====
             function createKey(customKey, type = 'user', deviceType = 'one', days = 30, hours = 0, minutes = 0, seconds = 0) {
                 const isAdminUser = currentUser && (currentUser.data?.isAdmin || currentUser.data?.type === 'admin');
                 if (!isAdminUser) {
@@ -1579,7 +1801,161 @@
                 return keyData;
             }
 
-            // ===== KÍCH HOẠT KEY =====
+            // ===== TẠO NHIỀU KEY =====
+            function createMultipleKeys(count, type, deviceType, days, hours) {
+                const isAdminUser = currentUser && (currentUser.data?.isAdmin || currentUser.data?.type === 'admin');
+                if (!isAdminUser) {
+                    showToast('⚠️ Chỉ ADMIN mới có quyền tạo key!', 'error');
+                    return [];
+                }
+
+                const newKeys = [];
+
+                for (let i = 0; i < count; i++) {
+                    let keyData;
+                    let attempts = 0;
+                    do {
+                        keyData = createKeyData('', type, deviceType, days, hours, 0, 0);
+                        attempts++;
+                    } while (keys.some(k => k.encryptedKey === keyData.encryptedKey) && attempts < 10);
+
+                    if (keys.some(k => k.encryptedKey === keyData.encryptedKey)) {
+                        continue;
+                    }
+
+                    keys.push(keyData);
+                    newKeys.push(keyData);
+                }
+
+                saveKeys();
+                renderKeys();
+                $('statKeys').textContent = keys.length;
+
+                // Thêm vào danh sách createdKeys (riêng biệt)
+                createdKeys = [...createdKeys, ...newKeys];
+
+                // Render bảng key đã tạo
+                renderCreatedKeys();
+
+                // Đồng bộ lên Firebase
+                if (isFirebaseConnected && firebaseDatabase) {
+                    const promises = newKeys.map(k => {
+                        return firebaseDatabase.ref('keys/' + k.encryptedKey).set(k);
+                    });
+                    Promise.all(promises).then(() => {
+                        newKeys.forEach(k => { k.synced = true; });
+                        saveKeys();
+                        renderKeys();
+                        renderCreatedKeys();
+                        showToast(`✅ Đã tạo và đồng bộ ${newKeys.length} key!`, 'success');
+                    }).catch(() => {
+                        showToast(`⚠️ Đã tạo ${newKeys.length} key nhưng chưa đồng bộ`, 'error');
+                    });
+                }
+
+                showToast(`✅ Đã tạo ${newKeys.length} key thành công!`, 'success');
+                return newKeys;
+            }
+
+            // ===== RENDER BẢNG KEY ĐÃ TẠO =====
+            function renderCreatedKeys() {
+                const section = $('createdKeysSection');
+                const body = $('createdKeysBody');
+                const countLabel = $('createdKeysCount');
+
+                if (createdKeys.length === 0) {
+                    section.classList.remove('show');
+                    return;
+                }
+
+                section.classList.add('show');
+                countLabel.textContent = createdKeys.length + ' key';
+
+                body.innerHTML = '';
+                createdKeys.forEach((k, i) => {
+                    const item = document.createElement('div');
+                    item.className = 'created-key-item';
+                    
+                    const isVip = k.isVip;
+                    const isOneDevice = k.deviceType === 'one';
+                    
+                    item.innerHTML = `
+                        <div class="key-row">
+                            <div class="key-index">${i + 1}</div>
+                            <div class="key-value">${k.key}</div>
+                            <button class="key-del" data-created-idx="${i}" title="Xóa khỏi bảng">✕</button>
+                        </div>
+                        <div class="key-meta">
+                            <span class="meta-badge ${isVip ? 'type-vip' : 'type-user'}">${isVip ? '⭐ VIP' : '🔑 KEY'}</span>
+                            <span class="meta-badge ${isOneDevice ? 'device-one' : 'device-multi'}">${isOneDevice ? '🔒 1 MÁY' : '📱 NHIỀU MÁY'}</span>
+                            <span class="meta-badge ${k.synced ? 'synced' : 'local'}">${k.synced ? '☁️ ĐÃ ĐỒNG BỘ' : '● LOCAL'}</span>
+                        </div>
+                    `;
+                    body.appendChild(item);
+                });
+
+                // Gắn sự kiện xóa từng key
+                body.querySelectorAll('.key-del').forEach(btn => {
+                    btn.onclick = function() {
+                        const idx = parseInt(this.dataset.createdIdx);
+                        const keyToRemove = createdKeys[idx];
+                        if (!keyToRemove) return;
+
+                        if (confirm(`Xóa key khỏi bảng hiển thị?\n\n${keyToRemove.key}\n\n(Lưu ý: Key vẫn tồn tại trong hệ thống)`)) {
+                            createdKeys.splice(idx, 1);
+                            renderCreatedKeys();
+                            showToast('🗑️ Đã xóa key khỏi bảng', 'success');
+                        }
+                    };
+                });
+            }
+
+            // ===== XUẤT TXT (CHỈ STT + KEY) =====
+            function exportCreatedKeysToTxt() {
+                if (createdKeys.length === 0) {
+                    showToast('⚠️ Chưa có key nào để xuất!', 'error');
+                    return;
+                }
+
+                const now = new Date();
+                const pad = n => String(n).padStart(2, '0');
+                const timestamp = `${pad(now.getDate())}${pad(now.getMonth() + 1)}${now.getFullYear()}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+
+                // Chỉ có STT và KEY
+                let content = '';
+                createdKeys.forEach((k, i) => {
+                    content += `${i + 1}. ${k.key}\n`;
+                });
+
+                const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `aimlock_keys_${timestamp}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                showToast(`📄 Đã xuất ${createdKeys.length} key ra file TXT!`, 'success');
+            }
+
+            // ===== XÓA TẤT CẢ KEY TRONG BẢNG =====
+            function clearAllCreatedKeys() {
+                if (createdKeys.length === 0) {
+                    showToast('⚠️ Bảng đã trống!', 'error');
+                    return;
+                }
+
+                if (!confirm(`Xóa TẤT CẢ ${createdKeys.length} key khỏi bảng?\n\n(Lưu ý: Key vẫn tồn tại trong hệ thống)`)) {
+                    return;
+                }
+
+                createdKeys = [];
+                renderCreatedKeys();
+                showToast('🗑️ Đã xóa tất cả key khỏi bảng!', 'success');
+            }
+
             function activateKey(inputKey) {
                 const keyData = keys.find(k => k.key === inputKey);
                 
@@ -1598,7 +1974,6 @@
                     return false;
                 }
 
-                // Kiểm tra loại key: 1 máy hay nhiều máy
                 if (keyData.deviceType === 'one' && !keyData.isAdmin) {
                     if (keyData.deviceId && keyData.deviceId !== DEVICE_ID) {
                         showToast('❌ Key đã được kích hoạt trên máy khác!', 'error');
@@ -1638,9 +2013,6 @@
                 return true;
             }
 
-            // ============================================================
-            //  CODE LINH TINH
-            // ============================================================
             function generateRandomLines() {
                 const templates = [
                     () => {
@@ -1766,9 +2138,6 @@
                 modal.classList.add('show');
             }
 
-            // ============================================================
-            //  UPDATE UI
-            // ============================================================
             function updateUI() {
                 const isAdmin = currentUser?.data?.isAdmin || currentUser?.data?.type === 'admin';
                 
@@ -1813,9 +2182,6 @@
                 });
             }
 
-            // ============================================================
-            //  START EXPIRE CHECKER
-            // ============================================================
             function startExpireChecker() {
                 if (expireTimer) {
                     clearInterval(expireTimer);
@@ -1830,9 +2196,6 @@
                 }, 1000);
             }
 
-            // ============================================================
-            //  CHECK EXPIRE
-            // ============================================================
             function checkExpireAndLogout() {
                 if (!currentUser) return;
 
@@ -1856,9 +2219,6 @@
                 return false;
             }
 
-            // ============================================================
-            //  UPDATE FF
-            // ============================================================
             function updateFFMode(mode) {
                 const normalBtn = $('ffNormal');
                 const maxBtn = $('ffMax');
@@ -1914,25 +2274,24 @@
             }
 
             // ============================================================
-            //  MỞ GAME - KHÔNG CHUYỂN QUA APPSTORE NỮA
+            //  MỞ GAME - HỖ TRỢ IPHONE VÀ ANDROID
             // ============================================================
             function openGame() {
                 const mode = ffMode;
                 const modeText = mode === 'max' ? 'FF MAX' : 'FF THƯỜNG';
                 showToast('🎮 Đang mở ' + modeText + '...', 'success');
 
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
                 const isAndroid = /Android/.test(navigator.userAgent);
                 
                 if (isIOS) {
-                    // iOS - mở game trực tiếp, KHÔNG FALLBACK APPSTORE
                     if (mode === 'max') {
                         window.location.href = 'freefiremax://';
                     } else {
                         window.location.href = 'freefire://';
                     }
                 } else if (isAndroid) {
-                    // Android - mở game trực tiếp, KHÔNG FALLBACK PLAYSTORE
                     if (mode === 'max') {
                         window.location.href = 'intent://#Intent;package=com.dts.freefiremax;end';
                     } else {
@@ -1962,9 +2321,6 @@
                 showToast('🚪 Đã đăng xuất');
             }
 
-            // ============================================================
-            //  FIREBASE - LẮNG NGHE
-            // ============================================================
             function listenFirebase() {
                 if (!isFirebaseConnected || !firebaseDatabase) {
                     setTimeout(listenFirebase, 3000);
@@ -2002,9 +2358,6 @@
                 });
             }
 
-            // ============================================================
-            //  INIT
-            // ============================================================
             function init() {
                 loadKeys();
                 
@@ -2049,9 +2402,7 @@
                     if (e.key === 'Enter') $('activateBtn').click();
                 };
 
-                // Nút KÍCH HOẠT - mở modal code
                 $('activateCodeBtn').onclick = function() {
-                    // Kiểm tra đã đăng nhập chưa
                     if (!currentUser) {
                         showToast('⚠️ Vui lòng kích hoạt key trước!', 'error');
                         return;
@@ -2059,7 +2410,6 @@
                     showActivationCode();
                 };
 
-                // Nút MỞ GAME trong modal - chỉ mở game KHÔNG fallback AppStore
                 $('modalOpenGameBtn').onclick = function() {
                     if (currentUser && currentUser.data) {
                         openGame();
@@ -2068,6 +2418,20 @@
                     }
                 };
 
+                // ===== ADMIN TABS =====
+                document.querySelectorAll('.admin-tab').forEach(tab => {
+                    tab.onclick = function() {
+                        const tabId = this.dataset.tab;
+                        
+                        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+                        
+                        this.classList.add('active');
+                        document.getElementById('tab-' + tabId).classList.add('active');
+                    };
+                });
+
+                // ===== TẠO KEY ĐƠN =====
                 $('createKeyBtn').onclick = function() {
                     const input = $('newKeyInput');
                     const type = document.getElementById('keyTypeSelect').value;
@@ -2091,6 +2455,32 @@
 
                     const key = createKey(input.value, type, deviceType, days, hours, minutes, seconds);
                     if (key) input.value = '';
+                };
+
+                // ===== TẠO NHIỀU KEY =====
+                $('createMultiKeyBtn').onclick = function() {
+                    const count = parseInt($('multiKeyCount').value) || 1;
+                    const type = $('multiKeyType').value;
+                    const deviceType = $('multiDeviceType').value;
+                    const days = parseInt($('multiDaysInput').value) || 30;
+                    const hours = parseInt($('multiHoursInput').value) || 0;
+
+                    if (count < 1 || count > 100) {
+                        showToast('⚠️ Số lượng key từ 1 đến 100!', 'error');
+                        return;
+                    }
+
+                    createMultipleKeys(count, type, deviceType, days, hours);
+                };
+
+                // ===== XUẤT TXT =====
+                $('exportCreatedTxtBtn').onclick = function() {
+                    exportCreatedKeysToTxt();
+                };
+
+                // ===== XÓA TẤT CẢ =====
+                $('clearAllCreatedKeysBtn').onclick = function() {
+                    clearAllCreatedKeys();
                 };
 
                 $('syncKeyBtn').onclick = function() {
