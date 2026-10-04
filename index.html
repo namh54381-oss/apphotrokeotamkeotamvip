@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0a0615">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -45,103 +45,50 @@
             z-index: 1;
             backdrop-filter: blur(20px);
         }
-        #loginScreen .logo { 
-            font-size: 72px; 
-            display: block;
-            margin-bottom: 4px;
-            text-shadow: 0 0 40px rgba(139,92,246,0.3);
-        }
+        #loginScreen .logo { font-size: 72px; display: block; margin-bottom: 4px; text-shadow: 0 0 40px rgba(139,92,246,0.3); }
         #loginScreen h1 { 
             font-family: 'Orbitron', monospace;
-            color: #c084fc; 
-            font-size: 28px; 
-            margin: 4px 0;
-            letter-spacing: 4px;
-            text-shadow: 0 0 30px rgba(139,92,246,0.2);
+            color: #c084fc; font-size: 28px; margin: 4px 0;
+            letter-spacing: 4px; text-shadow: 0 0 30px rgba(139,92,246,0.2);
         }
-        #loginScreen .sub { 
-            color: #8a7a9e; 
-            font-size: 13px; 
-            margin-bottom: 24px;
-            letter-spacing: 3px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
+        #loginScreen .sub { color: #8a7a9e; font-size: 13px; margin-bottom: 24px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
         
         .input-wrap { 
-            display: flex; 
-            background: rgba(10,6,21,0.8); 
-            border: 1px solid rgba(139,92,246,0.2); 
-            border-radius: 16px; 
-            padding: 4px 16px 4px 20px; 
-            margin-bottom: 14px; 
-            position: relative;
-            flex-direction: column;
-            transition: border-color 0.3s;
+            display: flex; background: rgba(10,6,21,0.8); 
+            border: 1px solid rgba(139,92,246,0.2); border-radius: 16px; 
+            padding: 4px 16px 4px 20px; margin-bottom: 14px;
+            flex-direction: column; transition: border-color 0.3s;
         }
-        .input-wrap:focus-within {
-            border-color: rgba(139,92,246,0.5);
-            box-shadow: 0 0 30px rgba(139,92,246,0.05);
-        }
+        .input-wrap:focus-within { border-color: rgba(139,92,246,0.5); }
         .input-wrap input { 
-            width: 100%;
-            background: none; 
-            border: 0; 
-            color: #fff; 
-            font-size: 16px; 
-            padding: 16px 0; 
-            outline: 0; 
-            font-weight: 500;
+            width: 100%; background: none; border: 0; color: #fff; 
+            font-size: 16px; padding: 16px 0; outline: 0; font-weight: 500;
         }
-        .input-wrap input::placeholder { color: #4a3a5e; font-weight: 400; }
+        .input-wrap input::placeholder { color: #4a3a5e; }
         
-        .input-wrap .zalo-hint {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 0 14px 0;
+        .input-wrap .contact-hint {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 10px 0 14px 0;
             border-top: 1px solid rgba(139,92,246,0.08);
-            font-size: 12px;
-            color: #6a5a7e;
+            font-size: 12px; color: #6a5a7e;
         }
-        .input-wrap .zalo-hint a {
-            color: #c084fc;
-            text-decoration: none;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: .3s;
-            padding: 6px 16px;
-            border-radius: 10px;
-            background: rgba(139,92,246,0.1);
-            font-size: 13px;
+        .input-wrap .contact-hint a {
+            color: #c084fc; text-decoration: none; font-weight: 700;
+            display: flex; align-items: center; gap: 6px; transition: .3s;
+            padding: 6px 16px; border-radius: 10px;
+            background: rgba(139,92,246,0.1); font-size: 13px;
         }
-        .input-wrap .zalo-hint a:hover {
-            background: rgba(139,92,246,0.2);
-            transform: scale(1.02);
-        }
-        .input-wrap .zalo-hint .zalo-icon { font-size: 18px; }
+        .input-wrap .contact-hint a:hover { background: rgba(139,92,246,0.2); transform: scale(1.02); }
+        .input-wrap .contact-hint .tiktok-icon { font-size: 18px; }
         
         .btn-primary { 
-            width: 100%; 
-            padding: 18px; 
-            border: 0; 
-            border-radius: 16px; 
+            width: 100%; padding: 18px; border: 0; border-radius: 16px; 
             background: linear-gradient(135deg, #7c3aed, #4c1d95); 
-            color: #fff; 
-            font-weight: 800; 
-            font-size: 18px; 
-            cursor: pointer; 
-            transition: .3s; 
-            letter-spacing: 1px;
+            color: #fff; font-weight: 800; font-size: 18px; 
+            cursor: pointer; transition: .3s; letter-spacing: 1px;
             box-shadow: 0 4px 20px rgba(124,58,237,0.3);
         }
-        .btn-primary:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.4); }
         .btn-primary:active { transform: scale(0.98); }
         
         .status { margin-top: 16px; color: #6a5a7e; font-size: 14px; min-height: 24px; font-weight: 500; }
@@ -152,75 +99,62 @@
 
         .topbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 18px; }
         .topbar .brand { 
-            font-family: 'Orbitron', monospace;
-            font-size: 20px; 
-            font-weight: 900; 
-            color: #c084fc;
-            letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(139,92,246,0.15);
+            font-family: 'Orbitron', monospace; font-size: 20px; 
+            font-weight: 900; color: #c084fc; letter-spacing: 2px;
         }
         .topbar .logout-btn { 
-            background: rgba(255,0,0,0.08); 
-            border: 1px solid rgba(255,107,138,0.15); 
-            border-radius: 12px; 
-            padding: 8px 18px; 
-            color: #ff6b8a; 
-            font-size: 13px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: .3s; 
+            background: rgba(255,0,0,0.08); border: 1px solid rgba(255,107,138,0.15); 
+            border-radius: 12px; padding: 8px 18px; color: #ff6b8a; 
+            font-size: 13px; font-weight: 700; cursor: pointer; transition: .3s; 
         }
-        .topbar .logout-btn:hover { background: rgba(255,0,0,0.15); border-color: rgba(255,107,138,0.3); }
+        .topbar .logout-btn:hover { background: rgba(255,0,0,0.15); }
 
         .account-card { 
             background: linear-gradient(135deg, rgba(18,10,35,0.85), rgba(8,4,18,0.92)); 
-            border: 1px solid rgba(139,92,246,0.12); 
-            border-radius: 24px; 
-            padding: 20px 24px; 
-            display: flex; 
-            align-items: center; 
-            gap: 16px; 
-            margin-bottom: 14px; 
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139,92,246,0.12); border-radius: 24px; 
+            padding: 20px 24px; display: flex; align-items: center; 
+            gap: 16px; margin-bottom: 14px; backdrop-filter: blur(10px);
         }
         .avatar { 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50%; 
+            width: 60px; height: 60px; border-radius: 50%; 
             background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(8,4,18,0.9)); 
             border: 2px solid rgba(139,92,246,0.3); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 28px; 
-            flex-shrink: 0; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 28px; flex-shrink: 0; 
         }
+        .account-info { flex: 1; }
         .account-info h2 { font-size: 18px; color: #f0e8f5; font-weight: 700; }
         .account-info .vip { color: #c084fc; font-weight: 700; font-size: 14px; }
         .account-info .expire { color: #8a7a9e; font-size: 12px; }
-        .slot-btn { 
-            margin-left: auto; 
-            text-align: center; 
-            background: rgba(139,92,246,0.08); 
-            border: 1px solid rgba(139,92,246,0.15); 
-            border-radius: 14px; 
-            padding: 10px 16px; 
-            color: #c084fc; 
-            min-width: 60px;
+        
+        .countdown-box {
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(76,29,149,0.1));
+            border: 1px solid rgba(192,132,252,0.3);
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            min-width: 110px;
+            text-align: center;
         }
-        .slot-btn span { font-size: 10px; text-transform: uppercase; opacity: 0.6; display: block; }
-        .slot-btn strong { display: block; font-size: 22px; font-weight: 900; }
+        .countdown-box .cd-label {
+            font-size: 9px; color: #8a7a9e; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: 700; margin-bottom: 3px;
+        }
+        .countdown-box .cd-time {
+            font-family: 'Orbitron', monospace;
+            font-size: 13px; font-weight: 900;
+            color: #4ade80; letter-spacing: 0.5px; line-height: 1.2;
+        }
+        .countdown-box.warning .cd-time { color: #f59e0b; animation: pulseWarning 1s infinite; }
+        .countdown-box.danger .cd-time { color: #ff6b8a; animation: pulseDanger 0.5s infinite; }
+        @keyframes pulseWarning { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        @keyframes pulseDanger { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
 
         .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 12px 0; }
         .stat-card { 
-            background: rgba(18,10,35,0.6); 
-            border: 1px solid rgba(139,92,246,0.06); 
-            border-radius: 16px; 
-            padding: 14px 8px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: .2s; 
-            backdrop-filter: blur(5px);
+            background: rgba(18,10,35,0.6); border: 1px solid rgba(139,92,246,0.06); 
+            border-radius: 16px; padding: 14px 8px; text-align: center; 
+            cursor: pointer; transition: .2s; backdrop-filter: blur(5px);
         }
         .stat-card:hover { border-color: rgba(139,92,246,0.2); transform: translateY(-2px); }
         .stat-card .num { font-size: 26px; font-weight: 900; color: #c084fc; }
@@ -228,20 +162,12 @@
 
         .gaming-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin: 12px 0; }
         .gaming-chip { 
-            background: rgba(18,10,35,0.6); 
-            border: 1px solid rgba(139,92,246,0.06); 
-            border-radius: 14px; 
-            padding: 12px 8px; 
-            text-align: center; 
-            backdrop-filter: blur(5px);
+            background: rgba(18,10,35,0.6); border: 1px solid rgba(139,92,246,0.06); 
+            border-radius: 14px; padding: 12px 8px; text-align: center; backdrop-filter: blur(5px);
         }
         .gaming-chip .lamp { 
-            width: 8px; 
-            height: 8px; 
-            border-radius: 50%; 
-            display: inline-block; 
-            margin-bottom: 4px;
-            animation: pulse 2s infinite;
+            width: 8px; height: 8px; border-radius: 50%; 
+            display: inline-block; margin-bottom: 4px; animation: pulse 2s infinite;
         }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
         .gaming-chip .lamp.green { background: #a78bfa; box-shadow: 0 0 12px rgba(167,139,250,0.4); }
@@ -255,93 +181,57 @@
 
         .ff-section { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
         .ff-btn { 
-            padding: 16px; 
-            border: 2px solid rgba(139,92,246,0.12); 
-            border-radius: 16px; 
-            background: rgba(18,10,35,0.5); 
-            color: #f0e8f5; 
-            font-weight: 700; 
-            font-size: 15px; 
-            cursor: pointer; 
-            transition: .3s; 
-            text-align: center; 
-            backdrop-filter: blur(5px);
+            padding: 16px; border: 2px solid rgba(139,92,246,0.12); 
+            border-radius: 16px; background: rgba(18,10,35,0.5); 
+            color: #f0e8f5; font-weight: 700; font-size: 15px; 
+            cursor: pointer; transition: .3s; text-align: center; backdrop-filter: blur(5px);
         }
         .ff-btn:hover { transform: scale(1.02); border-color: rgba(139,92,246,0.3); }
         .ff-btn.active { 
-            border-color: #c084fc; 
-            background: rgba(139,92,246,0.15); 
+            border-color: #c084fc; background: rgba(139,92,246,0.15); 
             box-shadow: 0 0 40px rgba(139,92,246,0.08);
         }
         .ff-btn .icon { font-size: 28px; display: block; margin-bottom: 4px; }
         .ff-btn .sub { font-size: 11px; color: #6a5a7e; font-weight: 400; }
 
         .section-title { 
-            text-align: center; 
-            color: #c084fc; 
-            font-size: 14px; 
-            margin: 24px 0 14px; 
-            letter-spacing: 3px; 
-            font-weight: 900; 
+            text-align: center; color: #c084fc; font-size: 14px; 
+            margin: 24px 0 14px; letter-spacing: 3px; font-weight: 900; 
             text-transform: uppercase; 
             border-bottom: 1px solid rgba(139,92,246,0.08); 
-            padding-bottom: 12px; 
-            font-family: 'Orbitron', monospace;
+            padding-bottom: 12px; font-family: 'Orbitron', monospace;
         }
         .section-title .sub { font-size: 10px; color: #4a3a5e; font-weight: 400; letter-spacing: 1px; display: block; margin-top: 2px; }
 
         .module-radio { 
-            display: flex; 
-            align-items: center; 
-            gap: 14px; 
+            display: flex; align-items: center; gap: 14px; 
             background: rgba(18,10,35,0.5); 
             border: 2px solid rgba(139,92,246,0.06); 
-            border-radius: 14px; 
-            padding: 12px 16px; 
-            margin-bottom: 8px; 
-            cursor: pointer; 
-            transition: .3s; 
-            backdrop-filter: blur(5px);
+            border-radius: 14px; padding: 12px 16px; 
+            margin-bottom: 8px; cursor: pointer; transition: .3s; backdrop-filter: blur(5px);
         }
         .module-radio:hover { border-color: rgba(139,92,246,0.15); }
         .module-radio.active { 
-            border-color: #c084fc; 
-            background: rgba(139,92,246,0.08); 
+            border-color: #c084fc; background: rgba(139,92,246,0.08); 
             box-shadow: 0 0 40px rgba(139,92,246,0.04);
         }
         .module-radio .radio { 
-            width: 20px; 
-            height: 20px; 
-            border-radius: 50%; 
-            border: 2px solid #4a3a5e; 
-            flex-shrink: 0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: .3s; 
+            width: 20px; height: 20px; border-radius: 50%; 
+            border: 2px solid #4a3a5e; flex-shrink: 0; 
+            display: flex; align-items: center; justify-content: center; transition: .3s; 
         }
         .module-radio.active .radio { border-color: #c084fc; }
         .module-radio .radio .dot { 
-            width: 10px; 
-            height: 10px; 
-            border-radius: 50%; 
-            background: #c084fc; 
-            transform: scale(0); 
-            transition: .3s; 
+            width: 10px; height: 10px; border-radius: 50%; 
+            background: #c084fc; transform: scale(0); transition: .3s; 
         }
         .module-radio.active .radio .dot { transform: scale(1); }
         .module-radio .info h4 { font-size: 14px; color: #f0e8f5; font-weight: 700; }
         .module-radio .info p { font-size: 12px; color: #6a5a7e; margin-top: 2px; }
         .module-radio .badge { 
-            margin-left: auto; 
-            font-size: 10px; 
-            padding: 4px 14px; 
-            border-radius: 20px; 
-            background: rgba(139,92,246,0.06); 
-            color: #5a4a6e; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-left: auto; font-size: 10px; padding: 4px 14px; 
+            border-radius: 20px; background: rgba(139,92,246,0.06); 
+            color: #5a4a6e; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
         }
         .module-radio.active .badge { background: rgba(192,132,252,0.15); color: #c084fc; }
 
@@ -349,17 +239,12 @@
         .optimize-item { 
             background: rgba(18,10,35,0.5); 
             border: 2px solid rgba(139,92,246,0.06); 
-            border-radius: 14px; 
-            padding: 14px 10px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: .3s; 
-            backdrop-filter: blur(5px);
+            border-radius: 14px; padding: 14px 10px; 
+            text-align: center; cursor: pointer; transition: .3s; backdrop-filter: blur(5px);
         }
         .optimize-item:hover { border-color: rgba(139,92,246,0.15); }
         .optimize-item.active { 
-            border-color: #c084fc; 
-            background: rgba(139,92,246,0.08); 
+            border-color: #c084fc; background: rgba(139,92,246,0.08); 
             box-shadow: 0 0 30px rgba(139,92,246,0.04);
         }
         .optimize-item .icon { font-size: 28px; display: block; margin-bottom: 4px; }
@@ -367,225 +252,197 @@
         .optimize-item .status { font-size: 9px; color: #4a3a5e; margin-top: 2px; display: block; font-weight: 600; }
         .optimize-item.active .status { color: #a78bfa; }
 
-        .btn-activate {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            margin-top: 16px;
-            border: none;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #7c3aed, #4c1d95);
-            color: #fff;
-            font-weight: 800;
-            font-size: 18px;
-            cursor: pointer;
-            text-align: center;
-            transition: .3s;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 25px rgba(124,58,237,0.25);
-            position: relative;
-            overflow: hidden;
+        /* ===== NÚT KÍCH HOẠT DUY NHẤT - TO, RÕ ===== */
+        .btn-activate-main {
+            display: block; width: 100%; padding: 22px; margin-top: 20px;
+            border: 2px solid rgba(192,132,252,0.4);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #7c3aed, #4c1d95); 
+            color: #fff; font-weight: 900; font-size: 20px; 
+            cursor: pointer; text-align: center; transition: .3s;
+            letter-spacing: 2px; text-transform: uppercase;
+            box-shadow: 0 6px 30px rgba(124,58,237,0.4);
+            position: relative; overflow: hidden;
         }
-        .btn-activate::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 4s infinite;
+        .btn-activate-main::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.08), transparent);
+            transform: rotate(45deg); animation: shimmer 3s infinite;
         }
         @keyframes shimmer {
             0% { transform: translateX(-100%) rotate(45deg); }
             100% { transform: translateX(100%) rotate(45deg); }
         }
-        .btn-activate:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 8px 40px rgba(124,58,237,0.35);
+        .btn-activate-main:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 10px 45px rgba(124,58,237,0.5);
         }
-        .btn-activate:active { transform: scale(0.98); }
-        .btn-activate .icon { font-size: 20px; margin-right: 8px; }
+        .btn-activate-main:active { transform: scale(0.98); }
+        .btn-activate-main .icon { font-size: 22px; margin-right: 10px; }
 
-        .zalo-btn { 
-            display: block; 
-            width: 100%; 
-            padding: 14px; 
-            margin-top: 12px; 
-            border: 1px solid rgba(139,92,246,0.15); 
-            border-radius: 16px; 
-            background: rgba(18,10,35,0.5); 
+        .tiktok-btn { 
+            display: block; width: 100%; padding: 14px; margin-top: 12px; 
+            border: 1px solid rgba(254,44,85,0.3); border-radius: 16px; 
+            background: linear-gradient(135deg, rgba(254,44,85,0.1), rgba(37,244,238,0.05)); 
             color: #f0e8f5; 
-            font-weight: 700; 
-            font-size: 14px; 
-            cursor: pointer; 
-            text-align: center; 
-            transition: .3s; 
-            text-decoration: none; 
-            backdrop-filter: blur(5px);
+            font-weight: 700; font-size: 14px; cursor: pointer; 
+            text-align: center; transition: .3s; text-decoration: none; backdrop-filter: blur(5px);
         }
-        .zalo-btn:hover { border-color: #c084fc; background: rgba(139,92,246,0.08); transform: translateY(-2px); }
-        .zalo-btn .icon { font-size: 18px; margin-right: 8px; }
+        .tiktok-btn:hover { 
+            border-color: #fe2c55; 
+            background: linear-gradient(135deg, rgba(254,44,85,0.2), rgba(37,244,238,0.1));
+            transform: translateY(-2px); 
+        }
+        .tiktok-btn .icon { font-size: 18px; margin-right: 8px; }
 
         .toast { 
-            position: fixed; 
-            bottom: 30px; 
-            left: 50%; 
+            position: fixed; bottom: 30px; left: 50%; 
             transform: translateX(-50%) translateY(100px); 
             background: rgba(10,6,20,0.95); 
             border: 1px solid rgba(139,92,246,0.15); 
-            border-radius: 16px; 
-            padding: 14px 24px; 
-            color: #fff; 
-            font-weight: 600; 
-            opacity: 0; 
-            transition: .4s; 
-            z-index: 999; 
-            text-align: center; 
-            max-width: 90%;
-            backdrop-filter: blur(20px);
-            font-size: 14px;
+            border-radius: 16px; padding: 14px 24px; color: #fff; 
+            font-weight: 600; opacity: 0; transition: .4s; z-index: 999; 
+            text-align: center; max-width: 90%; 
+            backdrop-filter: blur(20px); font-size: 14px;
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         .toast.success { border-color: rgba(167,139,250,0.3); }
         .toast.error { border-color: rgba(255,107,138,0.3); }
 
+        /* ===== MODAL KÍCH HOẠT - CÓ NÚT MỞ GAME BÊN TRONG ===== */
         .modal-overlay { 
-            position: fixed; 
-            inset: 0; 
-            z-index: 1000; 
-            background: rgba(0,0,0,0.85); 
-            backdrop-filter: blur(20px);
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px; 
+            position: fixed; inset: 0; z-index: 1000; 
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
+            display: none; align-items: center; justify-content: center; padding: 20px; 
         }
         .modal-overlay.show { display: flex; }
         .modal-box { 
             background: linear-gradient(180deg, rgba(18,10,35,0.98), rgba(8,4,18,0.98)); 
-            border: 1px solid rgba(139,92,246,0.12); 
-            border-radius: 28px; 
-            padding: 28px; 
-            max-width: 480px; 
-            width: 100%; 
-            max-height: 80vh; 
-            overflow-y: auto; 
-            animation: fadeIn .4s ease; 
-            position: relative; 
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            border: 1px solid rgba(139,92,246,0.12); border-radius: 28px; 
+            padding: 28px; max-width: 480px; width: 100%; max-height: 80vh; 
+            overflow-y: auto; animation: fadeIn .4s ease; 
+            position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
         }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .modal-box .close { 
-            position: sticky; 
-            top: 0; 
-            float: right; 
-            background: none; 
-            border: 0; 
-            color: #fff; 
-            font-size: 24px; 
-            cursor: pointer; 
-            z-index: 2;
-            opacity: 0.4;
-            transition: .3s;
+            position: sticky; top: 0; float: right; background: none; 
+            border: 0; color: #fff; font-size: 24px; cursor: pointer; 
+            z-index: 2; opacity: 0.4; transition: .3s;
         }
         .modal-box .close:hover { opacity: 0.8; }
         .modal-box h2 { 
-            color: #c084fc; 
-            margin-bottom: 16px; 
-            text-align: center;
-            font-family: 'Orbitron', monospace;
-            letter-spacing: 2px;
-            font-size: 20px;
+            color: #c084fc; margin-bottom: 16px; text-align: center;
+            font-family: 'Orbitron', monospace; letter-spacing: 2px; font-size: 20px;
         }
         .modal-box .code-container {
-            background: rgba(10,6,21,0.8);
-            padding: 16px 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(139,92,246,0.06);
-            margin-bottom: 16px;
-            max-height: 320px;
-            overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 11px;
-            color: #a78bfa;
-            white-space: pre-wrap;
-            word-break: break-all;
-            line-height: 1.7;
+            background: rgba(10,6,21,0.8); padding: 16px 20px;
+            border-radius: 16px; border: 1px solid rgba(139,92,246,0.06); 
+            margin-bottom: 16px; max-height: 320px; overflow-y: auto;
+            font-family: 'Courier New', monospace; font-size: 11px;
+            color: #a78bfa; white-space: pre-wrap; word-break: break-all; line-height: 1.7;
         }
         .modal-box .code-container .line {
-            opacity: 0;
-            animation: typeLine 0.25s ease forwards;
+            opacity: 0; animation: typeLine 0.25s ease forwards;
         }
-        .modal-box .code-container .line:nth-child(1) { animation-delay: 0.05s; }
-        .modal-box .code-container .line:nth-child(2) { animation-delay: 0.10s; }
-        .modal-box .code-container .line:nth-child(3) { animation-delay: 0.15s; }
-        .modal-box .code-container .line:nth-child(4) { animation-delay: 0.20s; }
-        .modal-box .code-container .line:nth-child(5) { animation-delay: 0.25s; }
-        .modal-box .code-container .line:nth-child(6) { animation-delay: 0.30s; }
-        .modal-box .code-container .line:nth-child(7) { animation-delay: 0.35s; }
-        .modal-box .code-container .line:nth-child(8) { animation-delay: 0.40s; }
-        .modal-box .code-container .line:nth-child(9) { animation-delay: 0.45s; }
-        .modal-box .code-container .line:nth-child(10) { animation-delay: 0.50s; }
-        .modal-box .code-container .line:nth-child(11) { animation-delay: 0.55s; }
-        .modal-box .code-container .line:nth-child(12) { animation-delay: 0.60s; }
-        .modal-box .code-container .line:nth-child(13) { animation-delay: 0.65s; }
-        .modal-box .code-container .line:nth-child(14) { animation-delay: 0.70s; }
-        .modal-box .code-container .line:nth-child(15) { animation-delay: 0.75s; }
-
         @keyframes typeLine {
             0% { opacity: 0; transform: translateX(-8px); }
             100% { opacity: 1; transform: translateX(0); }
         }
         .modal-box .success-text {
-            color: #4ade80;
-            font-weight: 800;
-            font-size: 20px;
-            text-align: center;
-            margin: 16px 0 20px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 40px rgba(74,222,128,0.2);
+            color: #4ade80; font-weight: 800; font-size: 20px; 
+            text-align: center; margin: 16px 0 20px; letter-spacing: 1px;
         }
+        
+        /* Nút MỞ GAME trong modal */
         .modal-box .btn-open-game {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            margin-top: 4px;
-            border: none;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #059669, #047857);
-            color: #fff;
-            font-weight: 800;
-            font-size: 18px;
-            cursor: pointer;
-            transition: .3s;
-            text-align: center;
+            display: block; width: 100%; padding: 18px; margin-top: 4px;
+            border: 2px solid rgba(74,222,128,0.4); border-radius: 16px;
+            background: linear-gradient(135deg, #059669, #047857); 
+            color: #fff; font-weight: 900; font-size: 18px; 
+            cursor: pointer; transition: .3s; text-align: center;
+            letter-spacing: 2px; text-transform: uppercase;
+            box-shadow: 0 6px 30px rgba(5,150,105,0.4);
+        }
+        .modal-box .btn-open-game:hover { 
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(5,150,105,0.5); 
+        }
+        .modal-box .btn-open-game .game-icon { font-size: 22px; margin-right: 10px; }
+        .modal-box .btn-open-game .mode-text {
+            display: block; color: #4ade80; font-size: 13px;
+            margin-top: 4px; letter-spacing: 1px; font-weight: 700;
+        }
+        
+        /* Nút đóng trong modal */
+        .modal-box .btn-close-modal {
+            display: block; width: 100%; padding: 14px; margin-top: 10px;
+            border: 1px solid rgba(139,92,246,0.2); border-radius: 14px;
+            background: rgba(139,92,246,0.08);
+            color: #a78bfa; font-weight: 700; font-size: 14px; 
+            cursor: pointer; transition: .3s; text-align: center;
             letter-spacing: 1px;
-            box-shadow: 0 4px 25px rgba(5,150,105,0.2);
         }
-        .modal-box .btn-open-game:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 35px rgba(5,150,105,0.3);
+        .modal-box .btn-close-modal:hover { 
+            background: rgba(139,92,246,0.15);
+            border-color: rgba(139,92,246,0.3);
         }
-        .modal-box .btn-open-game:active { transform: scale(0.98); }
+
+        /* ===== MÀN HÌNH KICK ===== */
+        .kick-overlay {
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+            display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .kick-overlay.show { display: flex; }
+        .kick-box {
+            background: linear-gradient(180deg, rgba(18,10,35,0.98), rgba(8,4,18,0.98));
+            border: 2px solid rgba(255,107,138,0.3); border-radius: 28px;
+            padding: 40px 28px; max-width: 400px; width: 100%;
+            text-align: center; animation: fadeIn .4s ease;
+            box-shadow: 0 30px 80px rgba(255,0,0,0.2);
+        }
+        .kick-box .icon { font-size: 64px; display: block; margin-bottom: 16px; }
+        .kick-box h2 {
+            color: #ff6b8a; font-family: 'Orbitron', monospace;
+            font-size: 22px; margin-bottom: 12px; letter-spacing: 2px;
+        }
+        .kick-box p { color: #8a7a9e; font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+        .kick-box .btn-back {
+            display: block; width: 100%; padding: 16px;
+            border: none; border-radius: 16px;
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            color: #fff; font-weight: 800; font-size: 16px;
+            cursor: pointer; transition: .3s; letter-spacing: 1px;
+        }
+        .kick-box .btn-back:hover { transform: translateY(-2px); }
+        .kick-box .tiktok-contact {
+            display: block; margin-top: 12px; padding: 12px;
+            border: 1px solid rgba(254,44,85,0.3);
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(254,44,85,0.1), rgba(37,244,238,0.05));
+            color: #f0e8f5; font-weight: 700; font-size: 13px;
+            text-decoration: none; transition: .3s;
+        }
+        .kick-box .tiktok-contact:hover {
+            border-color: #fe2c55;
+            background: linear-gradient(135deg, rgba(254,44,85,0.2), rgba(37,244,238,0.1));
+        }
 
         @media (max-width: 430px) {
             .account-card { flex-wrap: wrap; padding: 16px 18px; gap: 10px; }
             .avatar { width: 48px; height: 48px; font-size: 20px; }
             .account-info h2 { font-size: 16px; }
-            .slot-btn strong { font-size: 18px; }
             .stat-card .num { font-size: 20px; }
             .ff-btn { font-size: 13px; padding: 12px; }
-            .ff-btn .icon { font-size: 22px; }
             .optimize-grid { gap: 8px; }
             .optimize-item { padding: 12px 6px; }
-            .optimize-item .icon { font-size: 22px; }
             #loginScreen { padding: 28px 18px 24px; }
             #loginScreen .logo { font-size: 56px; }
             #loginScreen h1 { font-size: 22px; }
-            .modal-box { padding: 20px; }
+            .btn-activate-main { font-size: 17px; padding: 18px; }
+            .countdown-box { min-width: 90px; padding: 8px 10px; }
+            .countdown-box .cd-time { font-size: 11px; }
         }
     </style>
 </head>
@@ -594,7 +451,6 @@
     <div class="skull-container" id="skullContainer"></div>
 
     <div class="app">
-
         <div id="toast" class="toast"></div>
 
         <!-- ===== LOGIN SCREEN ===== -->
@@ -605,12 +461,11 @@
             
             <div class="input-wrap">
                 <input id="keyInput" type="text" placeholder="Nhập key để kích hoạt..." autocomplete="off">
-                <div class="zalo-hint">
+                <div class="contact-hint">
                     <span>💡 Chưa có key?</span>
-                    <a href="https://zalo.me/0962086812" target="_blank">
-                        <span class="zalo-icon">💬</span>
-                        MUA KEY VIP TẠI ZALO
-                        <span style="font-size:10px; color:#4a3a5e;">0962.086.812</span>
+                    <a href="https://www.tiktok.com/@appvip123" target="_blank">
+                        <span class="tiktok-icon">🎵</span>
+                        MUA KEY TẠI TIKTOK @appvip123
                     </a>
                 </div>
             </div>
@@ -620,7 +475,6 @@
 
         <!-- ===== MAIN APP ===== -->
         <div id="mainApp">
-
             <div class="topbar">
                 <div class="brand">💀 AIMLOCK</div>
                 <button class="logout-btn" id="topbarLogoutBtn">🚪 Đăng xuất</button>
@@ -631,11 +485,11 @@
                 <div class="account-info">
                     <h2 id="userName">NAM VIP PRO</h2>
                     <div class="vip" id="vipPlan">💎 VIP PRO</div>
-                    <div class="expire" id="expireDate">HSD: 31/12/2030</div>
+                    <div class="expire" id="expireDate">HSD: --/--/----</div>
                 </div>
-                <div class="slot-btn">
-                    <span>Slot</span>
-                    <strong id="slotText">∞</strong>
+                <div class="countdown-box" id="countdownBox">
+                    <div class="cd-label">⏱️ Còn lại</div>
+                    <div class="cd-time" id="countdownText">00:00:00:00</div>
                 </div>
             </div>
 
@@ -668,37 +522,22 @@
             <div id="moduleList">
                 <div class="module-radio" data-module="nhetam">
                     <div class="radio"><span class="dot"></span></div>
-                    <div class="info">
-                        <h4>🌸 NHẸ TÂM</h4>
-                        <p>Giảm rung, mượt thao tác</p>
-                    </div>
+                    <div class="info"><h4>🌸 NHẸ TÂM</h4><p>Giảm rung, mượt thao tác</p></div>
                     <span class="badge">STANDBY</span>
                 </div>
-
                 <div class="module-radio active" data-module="aimlockhead">
                     <div class="radio"><span class="dot"></span></div>
-                    <div class="info">
-                        <h4>🎯 AIMLOCK HEAD</h4>
-                        <p>Hỗ trợ ngắm bắn chính xác</p>
-                    </div>
+                    <div class="info"><h4>🎯 AIMLOCK HEAD</h4><p>Hỗ trợ ngắm bắn chính xác</p></div>
                     <span class="badge">ACTIVE</span>
                 </div>
-
                 <div class="module-radio" data-module="bamdau">
                     <div class="radio"><span class="dot"></span></div>
-                    <div class="info">
-                        <h4>💀 BÁM ĐẦU</h4>
-                        <p>Bám đầu đối thủ khi combat</p>
-                    </div>
+                    <div class="info"><h4>💀 BÁM ĐẦU</h4><p>Bám đầu đối thủ khi combat</p></div>
                     <span class="badge">STANDBY</span>
                 </div>
-
                 <div class="module-radio" data-module="regvip">
                     <div class="radio"><span class="dot"></span></div>
-                    <div class="info">
-                        <h4>⭐ REG VIP</h4>
-                        <p>Đăng ký VIP tự động</p>
-                    </div>
+                    <div class="info"><h4>⭐ REG VIP</h4><p>Đăng ký VIP tự động</p></div>
                     <span class="badge">STANDBY</span>
                 </div>
             </div>
@@ -710,36 +549,28 @@
 
             <div class="optimize-grid" id="optimizeGrid">
                 <div class="optimize-item active" data-opt="sensitivity">
-                    <span class="icon">🎯</span>
-                    <span class="name">Sensitivity</span>
-                    <span class="status">ON</span>
+                    <span class="icon">🎯</span><span class="name">Sensitivity</span><span class="status">ON</span>
                 </div>
                 <div class="optimize-item active" data-opt="fps">
-                    <span class="icon">⚡</span>
-                    <span class="name">Tăng FPS</span>
-                    <span class="status">ON</span>
+                    <span class="icon">⚡</span><span class="name">Tăng FPS</span><span class="status">ON</span>
                 </div>
                 <div class="optimize-item active" data-opt="chongrung">
-                    <span class="icon">🛡️</span>
-                    <span class="name">Chống rung</span>
-                    <span class="status">ON</span>
+                    <span class="icon">🛡️</span><span class="name">Chống rung</span><span class="status">ON</span>
                 </div>
             </div>
 
-            <button class="btn-activate" id="activateCodeBtn">
-                <span class="icon">⚡</span>
-                KÍCH HOẠT
+            <!-- ===== CHỈ CÓ 1 NÚT KÍCH HOẠT DUY NHẤT ===== -->
+            <button class="btn-activate-main" id="activateCodeBtn">
+                <span class="icon">⚡</span>KÍCH HOẠT
             </button>
 
-            <a class="zalo-btn" href="https://zalo.me/0962086812" target="_blank">
-                <span class="icon">💬</span>
-                ZALO 0962086812 - MUA KEY VIP
+            <a class="tiktok-btn" href="https://www.tiktok.com/@appvip123" target="_blank">
+                <span class="icon">🎵</span>TIKTOK @appvip123 - MUA KEY VIP
             </a>
-
         </div>
     </div>
 
-    <!-- ===== MODAL KÍCH HOẠT ===== -->
+    <!-- ===== MODAL KÍCH HOẠT (CÓ MỞ GAME BÊN TRONG) ===== -->
     <div class="modal-overlay" id="activationModal">
         <div class="modal-box">
             <button class="close" id="modalCloseBtn">✕</button>
@@ -747,15 +578,33 @@
             <div class="code-container" id="codeContainer"></div>
             <div class="success-text" id="successText" style="display:none;">✅ KÍCH HOẠT THÀNH CÔNG!</div>
             
+            <!-- Nút MỞ GAME trong modal -->
             <button class="btn-open-game" id="modalOpenGameBtn">
-                🎮 MỞ GAME
+                <span class="game-icon">🎮</span>MỞ GAME
+                <span class="mode-text" id="modalGameMode">FF THƯỜNG</span>
             </button>
+            
+            <!-- Nút đóng modal -->
+            <button class="btn-close-modal" id="modalCloseBottomBtn">✕ ĐÓNG</button>
+        </div>
+    </div>
+
+    <!-- ===== MÀN HÌNH KICK ===== -->
+    <div class="kick-overlay" id="kickOverlay">
+        <div class="kick-box">
+            <span class="icon" id="kickIcon">🚫</span>
+            <h2 id="kickTitle">KEY BỊ VÔ HIỆU</h2>
+            <p id="kickMessage">Key của bạn đã bị vô hiệu hóa bởi ADMIN.</p>
+            <button class="btn-back" id="kickBackBtn">🔄 VỀ TRANG ĐĂNG NHẬP</button>
+            <a class="tiktok-contact" href="https://www.tiktok.com/@appvip123" target="_blank">
+                🎵 Liên hệ TikTok @appvip123
+            </a>
         </div>
     </div>
 
     <script>
         // ============================================================
-        //  FIREBASE CONFIG - DÙNG CHUNG VỚI ADMIN.HTML
+        //  FIREBASE CONFIG
         // ============================================================
         const firebaseConfig = {
             apiKey: "AIzaSyBYrCMOEwxyiAJkCdeH4pToU6F8qPnpy_Y",
@@ -779,7 +628,6 @@
             connectedRef.on('value', (snap) => {
                 isFirebaseConnected = snap.val() === true;
             });
-            
             isFirebaseConnected = true;
         } catch (error) {
             isFirebaseConnected = false;
@@ -810,6 +658,7 @@
             }
 
             const DEVICE_ID = getDeviceId();
+            const BANNED_KEY = 'aimlock_banned_timestamp';
 
             function showToast(msg, type) {
                 const t = $('toast');
@@ -842,92 +691,251 @@
                 '{"sensitivity":true,"fps":true,"chongrung":true}');
             let currentUser = null;
             let currentKeyData = null;
-            let expireTimer = null;
+            let countdownTimer = null;
+            let firebaseListener = null;
+            let deviceBanListener = null;
+            let isLoggingOut = false;
 
-            // ===== KIỂM TRA KEY HẾT HẠN =====
-            function isKeyExpired(keyData) {
-                if (!keyData || keyData.status === 'expired' || keyData.status === 'disabled') return true;
+            function isKeyInvalid(keyData) {
+                if (!keyData) return true;
+                if (keyData.status === 'banned') return true;
+                if (keyData.status === 'disabled') return true;
+                if (keyData.status === 'expired') return true;
                 if (keyData.isAdmin || keyData.type === 'admin') return false;
                 const expire = new Date(keyData.expire);
                 return new Date() > expire;
             }
 
-            function getRemainingTime(keyData) {
-                if (!keyData) return null;
-                if (keyData.isAdmin || keyData.type === 'admin') {
-                    return { days: '∞', hours: '∞', minutes: '∞', seconds: '∞', total: Infinity };
-                }
-                const expire = new Date(keyData.expire);
-                const now = new Date();
-                const diff = expire.getTime() - now.getTime();
-                if (diff <= 0) return null;
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                return { days, hours, minutes, seconds, total: diff };
+            // ============================================================
+            //  🚫 QUẢN LÝ BAN THIẾT BỊ (Admin ban → localStorage)
+            // ============================================================
+            function isDeviceBannedLocal() {
+                const banned = localStorage.getItem(BANNED_KEY);
+                if (!banned) return false;
+                try {
+                    const data = JSON.parse(banned);
+                    if (data.deviceId !== DEVICE_ID) return false;
+                    return true;
+                } catch (e) { return false; }
             }
 
-            // ===== XÁC THỰC KEY TỪ FIREBASE =====
+            function markDeviceBannedLocal() {
+                localStorage.setItem(BANNED_KEY, JSON.stringify({
+                    timestamp: Date.now(),
+                    deviceId: DEVICE_ID,
+                    key: currentUser?.key || ''
+                }));
+            }
+
+            // Kiểm tra Firebase xem device có bị ban không
+            async function checkDeviceBannedFirebase() {
+                if (!isFirebaseConnected || !firebaseDatabase) return false;
+                try {
+                    const snap = await firebaseDatabase.ref('banned_devices/' + DEVICE_ID).once('value');
+                    return snap.exists();
+                } catch (e) { return false; }
+            }
+
+            // Listener realtime cho banned_devices
+            function startDeviceBanListener() {
+                if (!isFirebaseConnected || !firebaseDatabase) return;
+                if (deviceBanListener) deviceBanListener.off();
+
+                deviceBanListener = firebaseDatabase.ref('banned_devices/' + DEVICE_ID);
+                deviceBanListener.on('value', (snapshot) => {
+                    if (snapshot.exists() && !isLoggingOut) {
+                        markDeviceBannedLocal();
+                        showKickScreen(
+                            '⛔', 
+                            'THIẾT BỊ BỊ BAN', 
+                            'Thiết bị của bạn đã bị BAN bởi ADMIN do vi phạm quy định.'
+                        );
+                    }
+                });
+            }
+
+            // ============================================================
+            //  ⏱️ ĐẾM NGƯỢC
+            // ============================================================
+            function formatCountdown(ms) {
+                if (ms <= 0) return '00:00:00:00';
+                const totalSeconds = Math.floor(ms / 1000);
+                const days = Math.floor(totalSeconds / 86400);
+                const hours = Math.floor((totalSeconds % 86400) / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                const pad = n => String(n).padStart(2, '0');
+                return `${pad(days)}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            }
+
+            function getRemainingMs(keyData) {
+                if (!keyData) return 0;
+                if (keyData.isAdmin || keyData.type === 'admin') return Infinity;
+                const expire = new Date(keyData.expire);
+                return expire.getTime() - Date.now();
+            }
+
+            function startCountdown() {
+                if (countdownTimer) clearInterval(countdownTimer);
+                updateCountdown();
+                countdownTimer = setInterval(updateCountdown, 1000);
+            }
+
+            function updateCountdown() {
+                if (!currentKeyData || isLoggingOut) return;
+                
+                const cdBox = $('countdownBox');
+                const cdText = $('countdownText');
+                
+                if (currentKeyData.isAdmin || currentKeyData.type === 'admin') {
+                    cdText.textContent = '∞∞:∞∞:∞∞:∞∞';
+                    cdBox.classList.remove('warning', 'danger');
+                    return;
+                }
+                
+                const remainingMs = getRemainingMs(currentKeyData);
+                
+                if (remainingMs <= 0) {
+                    cdText.textContent = '00:00:00:00';
+                    cdBox.classList.add('danger');
+                    showKickScreen('⏰', 'KEY HẾT HẠN', 'Key của bạn đã HẾT HẠN. Vui lòng mua key mới.');
+                    return;
+                }
+                
+                cdText.textContent = formatCountdown(remainingMs);
+                
+                const totalSeconds = Math.floor(remainingMs / 1000);
+                cdBox.classList.remove('warning', 'danger');
+                
+                if (totalSeconds <= 300) cdBox.classList.add('danger');
+                else if (totalSeconds <= 3600) cdBox.classList.add('warning');
+            }
+
+            // ============================================================
+            //  🔥 FIREBASE LISTENER cho KEY
+            // ============================================================
+            function startKeyListener(encryptedKey) {
+                if (!isFirebaseConnected || !firebaseDatabase) return;
+                if (firebaseListener) firebaseListener.off();
+
+                firebaseListener = firebaseDatabase.ref('keys/' + encryptedKey);
+                firebaseListener.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    
+                    if (!data) {
+                        if (!isLoggingOut) {
+                            markDeviceBannedLocal();
+                            showKickScreen('🚫', 'KEY ĐÃ BỊ XÓA', 'Key của bạn đã bị XÓA bởi ADMIN.');
+                        }
+                        return;
+                    }
+
+                    if (data.status === 'banned') {
+                        if (!isLoggingOut) {
+                            markDeviceBannedLocal();
+                            showKickScreen('⛔', 'KEY ĐÃ BỊ BAN', 'Key của bạn đã bị BAN bởi ADMIN.');
+                        }
+                        return;
+                    }
+
+                    if (data.status === 'disabled') {
+                        if (!isLoggingOut) {
+                            showKickScreen('🚫', 'KEY BỊ VÔ HIỆU', 'Key của bạn đã bị VÔ HIỆU HÓA bởi ADMIN.');
+                        }
+                        return;
+                    }
+
+                    // Cập nhật data realtime
+                    currentKeyData = data;
+                });
+            }
+
+            // ============================================================
+            //  HIỂN THỊ MÀN HÌNH KICK
+            // ============================================================
+            function showKickScreen(icon, title, message) {
+                if (isLoggingOut) return;
+                isLoggingOut = true;
+                
+                if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+                if (firebaseListener) { firebaseListener.off(); firebaseListener = null; }
+                if (deviceBanListener) { deviceBanListener.off(); deviceBanListener = null; }
+                
+                localStorage.removeItem('aimlock_current_user');
+                currentUser = null;
+                currentKeyData = null;
+
+                $('kickIcon').textContent = icon;
+                $('kickTitle').textContent = title;
+                $('kickMessage').innerHTML = message + '<br><br>Vui lòng liên hệ TikTok để được hỗ trợ.';
+                $('kickOverlay').classList.add('show');
+            }
+
+            // ============================================================
+            //  XÁC THỰC KEY
+            // ============================================================
             async function verifyKeyFromFirebase(inputKey) {
                 if (!isFirebaseConnected || !firebaseDatabase) {
                     showToast('❌ Không kết nối được server!', 'error');
                     return null;
                 }
-
                 try {
-                    // Lấy tất cả key từ Firebase
                     const snapshot = await firebaseDatabase.ref('keys').once('value');
                     const data = snapshot.val();
-                    
-                    if (!data) {
-                        showToast('❌ Key không tồn tại!', 'error');
-                        return null;
-                    }
-
-                    // Tìm key khớp (so sánh trực tiếp key value)
+                    if (!data) return null;
                     const allKeys = Object.values(data);
-                    const keyData = allKeys.find(k => k && k.key === inputKey);
-
-                    if (!keyData) {
-                        showToast('❌ Key không tồn tại!', 'error');
-                        return null;
-                    }
-
-                    return keyData;
+                    return allKeys.find(k => k && k.key === inputKey) || null;
                 } catch (error) {
-                    console.error('Verify key error:', error);
-                    showToast('❌ Lỗi xác thực key: ' + error.message, 'error');
+                    console.error('Verify error:', error);
                     return null;
                 }
             }
 
-            // ===== KÍCH HOẠT KEY =====
+            // ============================================================
+            //  KÍCH HOẠT KEY
+            // ============================================================
             async function activateKey(inputKey) {
+                // Kiểm tra ban thiết bị local
+                if (isDeviceBannedLocal()) {
+                    showToast('⛔ Thiết bị này đã bị chặn!', 'error');
+                    showKickScreen('⛔', 'THIẾT BỊ BỊ CHẶN', 'Thiết bị này đã bị BAN. Không thể đăng nhập lại.');
+                    return false;
+                }
+
+                // Kiểm tra ban thiết bị trên Firebase
+                const isBannedFirebase = await checkDeviceBannedFirebase();
+                if (isBannedFirebase) {
+                    markDeviceBannedLocal();
+                    showKickScreen('⛔', 'THIẾT BỊ BỊ BAN', 'Thiết bị của bạn đã bị BAN bởi ADMIN.');
+                    return false;
+                }
+
                 const loginStatus = $('loginStatus');
                 loginStatus.textContent = '⏳ Đang xác thực key...';
                 loginStatus.className = 'status';
 
-                // Xác thực từ Firebase
                 const keyData = await verifyKeyFromFirebase(inputKey);
 
                 if (!keyData) {
-                    loginStatus.textContent = 'Nhập key để kích hoạt';
-                    loginStatus.className = 'status';
+                    showToast('❌ Key không tồn tại!', 'error');
+                    loginStatus.textContent = 'Key không tồn tại';
+                    loginStatus.className = 'status error';
+                    return false;
+                }
+
+                if (keyData.status === 'banned') {
+                    markDeviceBannedLocal();
+                    showKickScreen('⛔', 'KEY ĐÃ BỊ BAN', 'Key này đã bị BAN bởi ADMIN.');
                     return false;
                 }
 
                 if (keyData.status === 'disabled') {
-                    showToast('❌ Key đã bị vô hiệu hóa!', 'error');
-                    loginStatus.textContent = 'Key đã bị vô hiệu hóa';
-                    loginStatus.className = 'status error';
+                    showKickScreen('🚫', 'KEY BỊ VÔ HIỆU', 'Key này đã bị VÔ HIỆU HÓA.');
                     return false;
                 }
 
-                if (isKeyExpired(keyData)) {
-                    showToast('❌ Key đã hết hạn!', 'error');
-                    loginStatus.textContent = 'Key đã hết hạn';
-                    loginStatus.className = 'status error';
+                if (isKeyInvalid(keyData)) {
+                    showKickScreen('⏰', 'KEY HẾT HẠN', 'Key này đã HẾT HẠN.');
                     return false;
                 }
 
@@ -939,7 +947,6 @@
                         loginStatus.className = 'status error';
                         return false;
                     }
-                    // Lưu deviceId
                     await firebaseDatabase.ref('keys/' + keyData.encryptedKey + '/deviceId').set(DEVICE_ID);
                     keyData.deviceId = DEVICE_ID;
                 } else if (keyData.deviceType === 'multi' || keyData.isAdmin) {
@@ -951,19 +958,18 @@
                     keyData.deviceIds = deviceIds;
                 }
 
-                // Cập nhật trạng thái
                 await firebaseDatabase.ref('keys/' + keyData.encryptedKey + '/status').set('active');
 
-                // Lưu vào localStorage
-                currentUser = { key: keyData.key };
+                currentUser = { key: keyData.key, encryptedKey: keyData.encryptedKey };
                 currentKeyData = keyData;
                 localStorage.setItem('aimlock_current_user', JSON.stringify(currentUser));
 
-                // Hiển thị app
                 document.getElementById('loginScreen').hidden = true;
                 document.getElementById('mainApp').style.display = 'block';
                 updateUI();
-                startExpireChecker();
+                startCountdown();
+                startKeyListener(keyData.encryptedKey);
+                startDeviceBanListener();
 
                 loginStatus.textContent = 'Kích hoạt thành công';
                 loginStatus.className = 'status success';
@@ -972,82 +978,57 @@
                 return true;
             }
 
-            // ===== CẬP NHẬT UI =====
             function updateUI() {
                 const isVip = currentKeyData?.isVip || false;
                 const isAdmin = currentKeyData?.isAdmin || currentKeyData?.type === 'admin';
                 
-                document.getElementById('userName').textContent = isAdmin ? 'ADMIN' : 'NAM VIP PRO';
-                document.getElementById('vipPlan').textContent = isAdmin ? '👑 ADMIN ⭐' : (isVip ? '💎 VIP PRO' : '🔑 KEY THƯỜNG');
+                document.getElementById('userName').textContent = isAdmin ? '👑 ADMIN' : 'NAM VIP PRO';
+                document.getElementById('vipPlan').textContent = isAdmin ? '👑 ADMIN' : (isVip ? '💎 VIP PRO' : '🔑 KEY THƯỜNG');
                 
                 if (currentKeyData) {
-                    if (isAdmin || currentKeyData.type === 'admin') {
+                    if (isAdmin) {
                         document.getElementById('expireDate').textContent = 'HSD: VĨNH VIỄN';
                     } else {
-                        const expireDate = new Date(currentKeyData.expire);
+                        const d = new Date(currentKeyData.expire);
                         const pad = n => String(n).padStart(2, '0');
                         document.getElementById('expireDate').textContent = 
-                            `HSD: ${pad(expireDate.getDate())}/${pad(expireDate.getMonth()+1)}/${expireDate.getFullYear()}`;
+                            `HSD: ${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
                     }
                 }
 
                 updateFFMode(ffMode);
                 selectModule(selectedModule);
 
-                const items = document.querySelectorAll('.optimize-item');
-                items.forEach(item => {
+                document.querySelectorAll('.optimize-item').forEach(item => {
                     const opt = item.dataset.opt;
                     if (optimizeState[opt]) {
                         item.classList.add('active');
-                        const status = item.querySelector('.status');
-                        if (status) status.textContent = 'ON';
+                        const s = item.querySelector('.status');
+                        if (s) s.textContent = 'ON';
                     } else {
                         item.classList.remove('active');
-                        const status = item.querySelector('.status');
-                        if (status) status.textContent = 'OFF';
+                        const s = item.querySelector('.status');
+                        if (s) s.textContent = 'OFF';
                     }
                 });
-            }
-
-            // ===== CẬP NHẬT THỜI GIAN CÒN LẠI =====
-            function startExpireChecker() {
-                if (expireTimer) clearInterval(expireTimer);
-                expireTimer = setInterval(function() {
-                    if (currentKeyData) {
-                        if (isKeyExpired(currentKeyData)) {
-                            showToast('⏰ Key đã hết hạn! Đăng xuất...', 'error');
-                            logout();
-                            return;
-                        }
-                        const remaining = getRemainingTime(currentKeyData);
-                        const slotText = document.getElementById('slotText');
-                        if (slotText && remaining) {
-                            if (remaining.total === Infinity) {
-                                slotText.textContent = '∞';
-                            } else {
-                                slotText.textContent = `${remaining.days}d ${remaining.hours}h ${remaining.minutes}m`;
-                            }
-                        }
-                    }
-                }, 1000);
             }
 
             function updateFFMode(mode) {
                 const normalBtn = $('ffNormal');
                 const maxBtn = $('ffMax');
                 const display = $('ffModeDisplay');
-                const gameDisplay = $('gameModeDisplay');
+                const modalText = $('modalGameMode');
 
                 if (mode === 'max') {
                     normalBtn.classList.remove('active');
                     maxBtn.classList.add('active');
                     display.textContent = '🔥 FF MAX';
-                    if (gameDisplay) gameDisplay.textContent = 'FF MAX';
+                    if (modalText) modalText.textContent = 'FF MAX';
                 } else {
                     normalBtn.classList.add('active');
                     maxBtn.classList.remove('active');
                     display.textContent = '🎮 FF THƯỜNG';
-                    if (gameDisplay) gameDisplay.textContent = 'FF THƯỜNG';
+                    if (modalText) modalText.textContent = 'FF THƯỜNG';
                 }
                 ffMode = mode;
                 localStorage.setItem('aimlock_ff_mode', mode);
@@ -1056,8 +1037,7 @@
             function selectModule(module) {
                 selectedModule = module;
                 localStorage.setItem('aimlock_selected_module', module);
-                const items = qsa('.module-radio');
-                items.forEach(item => {
+                qsa('.module-radio').forEach(item => {
                     const mod = item.dataset.module;
                     const badge = item.querySelector('.badge');
                     if (mod === module) {
@@ -1073,50 +1053,72 @@
             function toggleOptimize(opt) {
                 optimizeState[opt] = !optimizeState[opt];
                 localStorage.setItem('aimlock_optimize', JSON.stringify(optimizeState));
-                const items = qsa('.optimize-item');
-                items.forEach(item => {
-                    const o = item.dataset.opt;
-                    if (o === opt) {
+                qsa('.optimize-item').forEach(item => {
+                    if (item.dataset.opt === opt) {
                         item.classList.toggle('active');
-                        const status = item.querySelector('.status');
-                        if (status) status.textContent = optimizeState[opt] ? 'ON' : 'OFF';
+                        const s = item.querySelector('.status');
+                        if (s) s.textContent = optimizeState[opt] ? 'ON' : 'OFF';
                     }
                 });
             }
 
-            // ===== MỞ GAME =====
+            // ============================================================
+            //  🎮 MỞ GAME
+            // ============================================================
             function openGame() {
                 const mode = ffMode;
                 const modeText = mode === 'max' ? 'FF MAX' : 'FF THƯỜNG';
-                showToast('🎮 Đang mở ' + modeText + '...', 'success');
-
+                
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
                 const isAndroid = /Android/.test(navigator.userAgent);
                 
+                // iOS
                 if (isIOS) {
+                    showToast('🎮 Đang mở ' + modeText + '...', 'success');
                     if (mode === 'max') {
                         window.location.href = 'freefiremax://';
                     } else {
                         window.location.href = 'freefire://';
                     }
-                } else if (isAndroid) {
-                    if (mode === 'max') {
-                        window.location.href = 'intent://#Intent;package=com.dts.freefiremax;end';
-                    } else {
-                        window.location.href = 'intent://#Intent;package=com.dts.freefireth;end';
-                    }
-                } else {
-                    showToast('📱 Vui lòng mở trên điện thoại!', 'error');
+                    return;
                 }
+                
+                // Android
+                if (isAndroid) {
+                    const packageName = mode === 'max' ? 'com.dts.freefiremax' : 'com.dts.freefireth';
+                    const playStoreUrl = 'https://play.google.com/store/apps/details?id=' + packageName;
+                    showToast('🎮 Đang mở ' + modeText + '...', 'success');
+                    
+                    const intentUrl = 'intent://launch/#Intent;' +
+                        'package=' + packageName + ';' +
+                        'S.browser_fallback_url=' + encodeURIComponent(playStoreUrl) + ';' +
+                        'end';
+                    
+                    try {
+                        const a = document.createElement('a');
+                        a.href = intentUrl;
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => { if (a.parentNode) document.body.removeChild(a); }, 1000);
+                    } catch (e) {
+                        window.location.href = intentUrl;
+                    }
+                    return;
+                }
+                
+                showToast('📱 Vui lòng mở trên điện thoại!', 'error');
             }
 
             function logout() {
+                isLoggingOut = true;
                 localStorage.removeItem('aimlock_current_user');
                 currentUser = null;
                 currentKeyData = null;
-                if (expireTimer) { clearInterval(expireTimer);
-                    expireTimer = null; }
+                if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+                if (firebaseListener) { firebaseListener.off(); firebaseListener = null; }
+                if (deviceBanListener) { deviceBanListener.off(); deviceBanListener = null; }
 
                 document.getElementById('loginScreen').hidden = false;
                 document.getElementById('mainApp').style.display = 'none';
@@ -1125,25 +1127,143 @@
                 document.getElementById('loginStatus').className = 'status';
 
                 showToast('🚪 Đã đăng xuất');
+                isLoggingOut = false;
             }
 
-            // ===== MODAL CODE =====
-            function generateRandomLines() {
-                const templates = [
-                    () => ['[+] Initializing...', '[+] Scanning...', '[+] Injecting payload...', '[+] Bypassing...', '[+] Shell established!', '[+] Data extracted!'],
-                    () => ['📡 OS: Kali Linux 2024.1', '   Kernel: 6.8.0-15', '   CPU: Intel Xeon', '   RAM: 128GB', '   GPU: NVIDIA A100'],
-                    () => {
-                        const chars = '01░▒▓█▄▀▐▌';
-                        let lines = [];
-                        for (let i = 0; i < 6; i++) {
-                            let line = '';
-                            for (let j = 0; j < 28; j++) line += chars.charAt(Math.floor(Math.random() * chars.length));
-                            lines.push(line);
-                        }
-                        return lines;
+            async function restoreSession() {
+                // Kiểm tra ban thiết bị local
+                if (isDeviceBannedLocal()) {
+                    $('loginStatus').textContent = 'Thiết bị đã bị chặn';
+                    $('loginStatus').className = 'status error';
+                    setTimeout(() => {
+                        showKickScreen('⛔', 'THIẾT BỊ BỊ CHẶN', 'Thiết bị này đã bị BAN. Không thể đăng nhập lại.');
+                    }, 500);
+                    return;
+                }
+
+                // Kiểm tra ban thiết bị Firebase
+                const isBannedFirebase = await checkDeviceBannedFirebase();
+                if (isBannedFirebase) {
+                    markDeviceBannedLocal();
+                    showKickScreen('⛔', 'THIẾT BỊ BỊ BAN', 'Thiết bị của bạn đã bị BAN bởi ADMIN.');
+                    return;
+                }
+
+                const savedUser = localStorage.getItem('aimlock_current_user');
+                if (!savedUser) return;
+
+                try {
+                    const user = JSON.parse(savedUser);
+                    if (!user.key) return;
+
+                    const keyData = await verifyKeyFromFirebase(user.key);
+                    
+                    if (keyData && keyData.status === 'banned') {
+                        markDeviceBannedLocal();
+                        showKickScreen('⛔', 'KEY ĐÃ BỊ BAN', 'Key của bạn đã bị BAN bởi ADMIN.');
+                        return;
                     }
-                ];
-                return templates[Math.floor(Math.random() * templates.length)]();
+                    
+                    if (!keyData || isKeyInvalid(keyData)) {
+                        localStorage.removeItem('aimlock_current_user');
+                        return;
+                    }
+
+                    if (keyData.deviceType === 'one' && keyData.deviceId && keyData.deviceId !== DEVICE_ID) {
+                        localStorage.removeItem('aimlock_current_user');
+                        return;
+                    }
+
+                    currentUser = user;
+                    currentKeyData = keyData;
+                    document.getElementById('loginScreen').hidden = true;
+                    document.getElementById('mainApp').style.display = 'block';
+                    updateUI();
+                    startCountdown();
+                    startKeyListener(keyData.encryptedKey);
+                    startDeviceBanListener();
+                } catch (e) {
+                    localStorage.removeItem('aimlock_current_user');
+                }
+            }
+
+            function init() {
+                restoreSession();
+
+                $('activateBtn').onclick = async function() {
+                    const input = $('keyInput');
+                    const key = input.value.trim();
+                    if (!key) {
+                        showToast('⚠️ Vui lòng nhập key!', 'error');
+                        return;
+                    }
+                    await activateKey(key);
+                };
+
+                $('keyInput').onkeydown = function(e) {
+                    if (e.key === 'Enter') $('activateBtn').click();
+                };
+
+                $('kickBackBtn').onclick = function() {
+                    if (isDeviceBannedLocal()) {
+                        showToast('⛔ Thiết bị đã bị chặn vĩnh viễn!', 'error');
+                        return;
+                    }
+                    $('kickOverlay').classList.remove('show');
+                    isLoggingOut = false;
+                    document.getElementById('loginScreen').hidden = false;
+                    document.getElementById('mainApp').style.display = 'none';
+                    document.getElementById('keyInput').value = '';
+                    document.getElementById('loginStatus').textContent = 'Nhập key để kích hoạt';
+                    document.getElementById('loginStatus').className = 'status';
+                };
+
+                // ===== NÚT KÍCH HOẠT DUY NHẤT - MỞ MODAL =====
+                $('activateCodeBtn').onclick = function() {
+                    if (!currentUser) {
+                        showToast('⚠️ Vui lòng kích hoạt key trước!', 'error');
+                        return;
+                    }
+                    showActivationCode();
+                };
+
+                // ===== NÚT MỞ GAME TRONG MODAL =====
+                $('modalOpenGameBtn').onclick = function() {
+                    if (currentUser) openGame();
+                };
+
+                // Đóng modal
+                $('modalCloseBtn').onclick = function() {
+                    $('activationModal').classList.remove('show');
+                };
+                $('modalCloseBottomBtn').onclick = function() {
+                    $('activationModal').classList.remove('show');
+                };
+                $('activationModal').addEventListener('click', function(e) {
+                    if (e.target === this) this.classList.remove('show');
+                });
+
+                qsa('.module-radio').forEach(item => {
+                    item.onclick = function() {
+                        const mod = this.dataset.module;
+                        if (mod !== selectedModule) selectModule(mod);
+                    };
+                });
+
+                qsa('.optimize-item').forEach(item => {
+                    item.onclick = function() { toggleOptimize(this.dataset.opt); };
+                });
+
+                $('ffNormal').onclick = function() { if (ffMode !== 'normal') updateFFMode('normal'); };
+                $('ffMax').onclick = function() { if (ffMode !== 'max') updateFFMode('max'); };
+
+                $('statOnlineCard').onclick = function() { showToast('👥 128 người online'); };
+                $('statKeysCard').onclick = function() { showToast('🔑 Hệ thống đang hoạt động'); };
+                $('statTodayCard').onclick = function() { showToast('📊 12 lượt kích hoạt hôm nay'); };
+
+                document.getElementById('topbarLogoutBtn').onclick = function() {
+                    if (confirm('Bạn có chắc muốn đăng xuất?')) logout();
+                };
             }
 
             function showActivationCode() {
@@ -1162,7 +1282,16 @@
                     ''
                 ];
 
-                const allLines = [...header, ...generateRandomLines()];
+                const randomLines = [
+                    '[+] Initializing exploit module...',
+                    '[+] Scanning for vulnerabilities...',
+                    '[+] Injecting payload at 0x7f8b4c...',
+                    '[+] Bypassing firewall rules...',
+                    '[+] Connection established on port 4444',
+                    '[+] System compromised!'
+                ];
+
+                const allLines = [...header, ...randomLines];
                 allLines.forEach((line) => {
                     const div = document.createElement('div');
                     div.className = 'line';
@@ -1182,111 +1311,6 @@
                 }, allLines.length * 280 + 500);
 
                 modal.classList.add('show');
-            }
-
-            // ===== KHÔI PHỤC PHIÊN ĐĂNG NHẬP =====
-            async function restoreSession() {
-                const savedUser = localStorage.getItem('aimlock_current_user');
-                if (!savedUser) return;
-
-                try {
-                    const user = JSON.parse(savedUser);
-                    if (!user.key) return;
-
-                    // Xác thực lại từ Firebase
-                    const keyData = await verifyKeyFromFirebase(user.key);
-                    
-                    if (!keyData || keyData.status === 'disabled' || isKeyExpired(keyData)) {
-                        localStorage.removeItem('aimlock_current_user');
-                        if (keyData && keyData.status === 'disabled') {
-                            showToast('⚠️ Key đã bị vô hiệu hóa!', 'error');
-                        }
-                        return;
-                    }
-
-                    // Kiểm tra thiết bị
-                    if (keyData.deviceType === 'one' && keyData.deviceId && keyData.deviceId !== DEVICE_ID) {
-                        localStorage.removeItem('aimlock_current_user');
-                        showToast('⚠️ Key đã dùng trên máy khác!', 'error');
-                        return;
-                    }
-
-                    currentUser = user;
-                    currentKeyData = keyData;
-                    document.getElementById('loginScreen').hidden = true;
-                    document.getElementById('mainApp').style.display = 'block';
-                    updateUI();
-                    startExpireChecker();
-                } catch (e) {
-                    localStorage.removeItem('aimlock_current_user');
-                }
-            }
-
-            // ===== INIT =====
-            function init() {
-                restoreSession();
-
-                // EVENTS
-                $('activateBtn').onclick = async function() {
-                    const input = $('keyInput');
-                    const key = input.value.trim();
-                    if (!key) {
-                        showToast('⚠️ Vui lòng nhập key!', 'error');
-                        return;
-                    }
-                    await activateKey(key);
-                };
-
-                $('keyInput').onkeydown = function(e) {
-                    if (e.key === 'Enter') $('activateBtn').click();
-                };
-
-                $('activateCodeBtn').onclick = function() {
-                    if (!currentUser) {
-                        showToast('⚠️ Vui lòng kích hoạt key trước!', 'error');
-                        return;
-                    }
-                    showActivationCode();
-                };
-
-                $('modalOpenGameBtn').onclick = function() {
-                    if (currentUser) {
-                        openGame();
-                    } else {
-                        showToast('⚠️ Vui lòng kích hoạt key trước!', 'error');
-                    }
-                };
-
-                qsa('.module-radio').forEach(item => {
-                    item.onclick = function() {
-                        const mod = this.dataset.module;
-                        if (mod !== selectedModule) selectModule(mod);
-                    };
-                });
-
-                qsa('.optimize-item').forEach(item => {
-                    item.onclick = function() {
-                        toggleOptimize(this.dataset.opt);
-                    };
-                });
-
-                $('ffNormal').onclick = function() { if (ffMode !== 'normal') updateFFMode('normal'); };
-                $('ffMax').onclick = function() { if (ffMode !== 'max') updateFFMode('max'); };
-
-                $('statOnlineCard').onclick = function() { showToast('👥 128 người online'); };
-                $('statKeysCard').onclick = function() { showToast('🔑 Hệ thống đang hoạt động'); };
-                $('statTodayCard').onclick = function() { showToast('📊 12 lượt kích hoạt hôm nay'); };
-
-                document.getElementById('topbarLogoutBtn').onclick = function() {
-                    if (confirm('Bạn có chắc muốn đăng xuất?')) logout();
-                };
-
-                document.getElementById('modalCloseBtn').onclick = function() {
-                    document.getElementById('activationModal').classList.remove('show');
-                };
-                document.getElementById('activationModal').addEventListener('click', function(e) {
-                    if (e.target === this) this.classList.remove('show');
-                });
             }
 
             if (document.readyState === 'loading') {
